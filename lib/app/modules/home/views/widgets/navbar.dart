@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:portfolio/app/core/styles/app_color.dart';
-import 'package:portfolio/app/core/styles/app_text.dart';
-import 'package:portfolio/app/core/utils/ui_utils.dart';
 import 'package:portfolio/app/core/utils/screen_utils.dart';
+import 'package:portfolio/app/core/utils/ui_utils.dart';
 import 'package:portfolio/app/core/values/app_icons.dart';
 import 'package:portfolio/app/modules/home/controllers/home_controller.dart';
 
@@ -44,10 +43,7 @@ class Navbar extends GetView<HomeController> {
             ),
             const Spacer(),
             if (!ScreenUtils.isSmallScreen(context)) ...[
-              Text(
-                "Hello!",
-                style: AppText.navItemStyle.copyWith(color: AppColor.primary),
-              ),
+              _buildNavItem(name: "Hello!", onClick: () {}),
               UIUtils.horizontalSpace(40),
               _buildNavItem(name: "Services", onClick: () {}),
               UIUtils.horizontalSpace(40),
