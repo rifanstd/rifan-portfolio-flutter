@@ -22,4 +22,19 @@ class AppText {
       fontWeight: FontWeight.normal,
     );
   }
+
+  static TextStyle get sectionTitle {
+    return const TextStyle(
+      fontSize: 30,
+      fontWeight: FontWeight.bold,
+    );
+  }
+
+  static TextStyle get sectionSubtitle {
+    return const TextStyle(
+      color: Colors.grey,
+      fontWeight: FontWeight.normal,
+      fontSize: 14,
+    );
+  }
 }

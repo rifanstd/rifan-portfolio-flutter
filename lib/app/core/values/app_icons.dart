@@ -14,4 +14,9 @@ class AppIcons {
   static const String linkedin = "assets/svg/linkedin.svg";
   static const String send = "assets/svg/send.svg";
   static const String mouse = "assets/svg/mouse.svg";
+  static const String tinyCode = "assets/svg/tiny_code.svg";
+  static const String arrowRight = "assets/svg/arrow_right.svg";
+  static const String rocket = "assets/svg/rocket.svg";
+  static const String puzzle = "assets/svg/puzzle.svg";
+  static const String gear = "assets/svg/gear.svg";
 }
