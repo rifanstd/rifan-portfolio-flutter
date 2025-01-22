@@ -10,4 +10,13 @@ class ServiceModel {
     required this.iconPath,
     required this.details,
   });
+
+  factory ServiceModel.fromJson(Map<String, dynamic> json) {
+    return ServiceModel(
+      id: json['id'].toString(),
+      title: json['title'].toString(),
+      iconPath: json['icon_path'].toString(),
+      details: List<String>.from(json['details']),
+    );
+  }
 }

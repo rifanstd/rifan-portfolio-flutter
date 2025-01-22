@@ -1,0 +1,69 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "title": "Mobile App Development",
+      "description": "I specialize in developing high-quality mobile applications tailored to meet your specific needs. Whether it's for Android or iOS, I bring your ideas to life with precision and creativity.",
+      "icon_path": "assets/svg/tiny_code.svg",
+      "details": [
+        "Native app development for Android (Kotlin/Java).",
+        "Native app development for iOS (Swift).",
+        "Scalable and performance-oriented mobile apps.",
+        "Custom UI/UX design tailored for target audiences.",
+        "Deployment-ready applications."
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Cross-Platform Development",
+      "description": "With cross-platform development, I ensure your app runs seamlessly on both Android and iOS, reducing development time and costs without compromising quality.",
+      "icon_path": "assets/svg/tiny_code.svg",
+      "details": [
+        "Development using Flutter or React Native.",
+        "Unified codebase for faster delivery.",
+        "Consistent design and performance across platforms.",
+        "Integration of platform-specific features.",
+        "Support for updates and scalability."
+      ]
+    },
+    {
+      "id": 3,
+      "title": "App Maintenance and Updates",
+      "description": "I provide ongoing support to keep your app secure, bug-free, and compatible with the latest OS updates, ensuring the best user experience.",
+      "icon_path": "assets/svg/gear.svg",
+      "details": [
+        "Bug fixes and troubleshooting.",
+        "Adding new features and functionalities.",
+        "Updating apps for new OS versions.",
+        "App performance monitoring and optimization.",
+        "Regular technical support and consultation."
+      ]
+    },
+    {
+      "id": 4,
+      "title": "API Integration",
+      "description": "I help integrate your application with robust APIs to enhance its functionality and provide seamless communication between different systems.",
+      "icon_path": "assets/svg/puzzle.svg",
+      "details": [
+        "RESTful API integration.",
+        "Third-party service integration (e.g., Firebase, Stripe, or payment gateways).",
+        "Secure and efficient API implementations.",
+        "Custom API development tailored to app needs.",
+        "Real-time data synchronization."
+      ]
+    },
+    {
+      "id": 5,
+      "title": "App Deployment",
+      "description": "I handle the entire deployment process, ensuring your app is live and accessible on major app stores with all required optimizations.",
+      "icon_path": "assets/svg/rocket.svg",
+      "details": [
+        "App Store and Google Play Store submissions.",
+        "App Store Optimization (ASO).",
+        "Compliance with app store guidelines.",
+        "Testing and debugging for deployment readiness.",
+        "Post-deployment support."
+      ]
+    }
+  ]
+}

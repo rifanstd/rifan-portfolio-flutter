@@ -1,12 +1,17 @@
 import 'package:get/get.dart';
 import 'package:portfolio/app/core/enums/url_enum.dart';
 import 'package:portfolio/app/core/values/urls.dart';
+import 'package:portfolio/app/data/models/service_model.dart';
+import 'package:portfolio/app/data/repositories/service_repository.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class HomeController extends GetxController {
+class HomeController extends GetxController with StateMixin {
+  RxList<ServiceModel> services = <ServiceModel>[].obs;
+
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
+    await initData();
   }
 
   @override
@@ -17,6 +22,29 @@ class HomeController extends GetxController {
   @override
   void onClose() {
     super.onClose();
+  }
+
+  Future<void> initData() async {
+    change(null, status: RxStatus.loading());
+
+    try {
+      await Future.delayed(const Duration(seconds: 3));
+      await Future.wait([
+        fetchServiceData(),
+      ]);
+
+      change(null, status: RxStatus.success());
+    } catch (e) {
+      Get.log(e.toString());
+      change(null, status: RxStatus.error());
+      throw Exception(e);
+    }
+  }
+
+  Future<void> fetchServiceData() async {
+    await Get.find<ServiceRepository>().getLocalServices().then((value) {
+      services.assignAll(value);
+    });
   }
 
   Future<void> openSocialMedia(UrlEnum type) async {

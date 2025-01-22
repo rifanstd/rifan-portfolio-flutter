@@ -40,6 +40,8 @@ dependencies:
   google_fonts: ^6.2.1
   url_launcher: ^6.3.1
   url_strategy: ^0.3.0
+  animate_do: ^3.3.4
+  lottie: ^3.2.0
 
 dev_dependencies:
   flutter_test:
@@ -67,6 +69,8 @@ flutter:
   assets:
     - assets/svg/
     - assets/images/
+    - assets/json/
+    - assets/lottie/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

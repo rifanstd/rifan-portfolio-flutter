@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:portfolio/app/core/utils/ui_utils.dart';
-import 'package:portfolio/app/core/values/app_icons.dart';
+import 'package:portfolio/app/modules/home/controllers/home_controller.dart';
 import 'package:portfolio/app/modules/home/views/widgets/service_item_card.dart';
 
-class ServiceSection extends StatelessWidget {
+class ServiceSection extends GetView<HomeController> {
   const ServiceSection({super.key});
 
   @override
@@ -21,11 +22,10 @@ class ServiceSection extends StatelessWidget {
           spacing: 24,
           runSpacing: 24,
           children: List.generate(
-            5,
+            controller.services.length,
             (index) {
-              return const ServiceItemCard(
-                title: "Mobile App Development",
-                iconPath: AppIcons.tinyCode,
+              return ServiceItemCard(
+                service: controller.services.elementAt(index),
               );
             },
           ),
