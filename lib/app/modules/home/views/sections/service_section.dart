@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:portfolio/app/core/styles/app_color.dart';
 import 'package:portfolio/app/core/utils/ui_utils.dart';
+import 'package:portfolio/app/data/models/service_model.dart';
 import 'package:portfolio/app/modules/home/controllers/home_controller.dart';
 import 'package:portfolio/app/modules/home/views/widgets/service_item_card.dart';
 
@@ -26,11 +28,42 @@ class ServiceSection extends GetView<HomeController> {
             (index) {
               return ServiceItemCard(
                 service: controller.services.elementAt(index),
+                onClick: (service) =>
+                    _showDetailServiceDialog(context, service),
               );
             },
           ),
         )
       ],
+    );
+  }
+
+  void _showDetailServiceDialog(BuildContext context, ServiceModel service) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          backgroundColor: AppColor.background,
+          surfaceTintColor: AppColor.background,
+          content: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Align(
+                alignment: Alignment.centerRight,
+                child: IconButton(
+                  icon: Icon(Icons.close_rounded),
+                  color: AppColor.primary,
+                  onPressed: () => Get.back(),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

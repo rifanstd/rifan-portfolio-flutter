@@ -9,18 +9,21 @@ import 'package:portfolio/app/data/models/service_model.dart';
 
 class ServiceItemCard extends StatelessWidget {
   final ServiceModel service;
+  final void Function(ServiceModel service) onClick;
 
   const ServiceItemCard({
     super.key,
     required this.service,
+    required this.onClick,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Get.log("Show Detail Dialog");
-      },
+      onTap: () => onClick(service),
+      hoverColor: Colors.transparent,
+      focusColor: Colors.transparent,
+      splashColor: Colors.transparent,
       child: Container(
         width: ScreenUtils.isLargeScreen(context) ? 250 : double.infinity,
         height: ScreenUtils.isLargeScreen(context) ? 250 : null,
