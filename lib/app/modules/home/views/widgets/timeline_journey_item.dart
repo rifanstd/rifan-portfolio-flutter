@@ -17,6 +17,7 @@ class TimelineJourneyItem extends StatelessWidget {
     return Timeline.tileBuilder(
       shrinkWrap: true,
       scrollDirection: Axis.vertical,
+      physics: const NeverScrollableScrollPhysics(),
       builder: TimelineTileBuilder(
         itemCount: journeys.length,
         indicatorBuilder: (context, index) => DotIndicator(

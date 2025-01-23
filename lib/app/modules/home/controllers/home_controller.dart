@@ -10,7 +10,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 class HomeController extends GetxController with StateMixin {
   // state
-  final selectedJourneyTab = JourneyEnum.education.obs;
+  final selectedJourneyTab = JourneyEnum.experience.obs;
 
   RxList<ServiceModel> services = <ServiceModel>[].obs;
   RxList<JourneyModel> educations = <JourneyModel>[].obs;
