@@ -19,4 +19,6 @@ class AppIcons {
   static const String rocket = "assets/svg/rocket.svg";
   static const String puzzle = "assets/svg/puzzle.svg";
   static const String gear = "assets/svg/gear.svg";
+  static const String close = "assets/svg/close.svg";
+  static const String check = "assets/svg/check.svg";
 }
