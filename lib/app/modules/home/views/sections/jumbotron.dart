@@ -18,9 +18,7 @@ class Jumbotron extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtils.isLargeScreen(context)
-        ? _largeScreenLayout(context)
-        : _smallScreenLayout(context);
+    return ScreenUtils.isLargeScreen(context) ? _largeScreenLayout(context) : _smallScreenLayout(context);
   }
 
   Column _smallScreenLayout(BuildContext context) {
@@ -95,8 +93,7 @@ class Jumbotron extends GetView<HomeController> {
       ),
       icon: SvgPicture.asset(
         AppIcons.send,
-        colorFilter:
-            const ColorFilter.mode(AppColor.background, BlendMode.srcIn),
+        colorFilter: const ColorFilter.mode(AppColor.background, BlendMode.srcIn),
         width: 24,
       ),
       iconAlignment: IconAlignment.end,
@@ -117,8 +114,7 @@ class Jumbotron extends GetView<HomeController> {
         Container(
           width: ScreenUtils.isLargeScreen(context) ? 50 : 30,
           decoration: BoxDecoration(
-            border:
-                const Border(top: BorderSide(color: Colors.black, width: 1)),
+            border: const Border(top: BorderSide(color: Colors.black, width: 1)),
             borderRadius: BorderRadius.circular(10),
           ),
         ),
@@ -184,9 +180,7 @@ class Jumbotron extends GetView<HomeController> {
           width: 24,
         ),
       ),
-      isVerticalLayout
-          ? UIUtils.verticalSpace(32)
-          : UIUtils.horizontalSpace(24),
+      isVerticalLayout ? UIUtils.verticalSpace(32) : UIUtils.horizontalSpace(24),
       InkWell(
         onTap: () async => controller.openSocialMedia(UrlEnum.github),
         child: SvgPicture.asset(
@@ -194,9 +188,7 @@ class Jumbotron extends GetView<HomeController> {
           width: 24,
         ),
       ),
-      isVerticalLayout
-          ? UIUtils.verticalSpace(32)
-          : UIUtils.horizontalSpace(24),
+      isVerticalLayout ? UIUtils.verticalSpace(32) : UIUtils.horizontalSpace(24),
       InkWell(
         onTap: () async => controller.openSocialMedia(UrlEnum.instagram),
         child: SvgPicture.asset(

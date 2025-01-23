@@ -47,7 +47,7 @@ class Navbar extends GetView<HomeController> {
               UIUtils.horizontalSpace(40),
               _buildNavItem(name: "Services", onClick: () {}),
               UIUtils.horizontalSpace(40),
-              _buildNavItem(name: "Experiences", onClick: () {}),
+              _buildNavItem(name: "Journey", onClick: () {}),
               UIUtils.horizontalSpace(40),
               _buildNavItem(name: "Skills", onClick: () {}),
               UIUtils.horizontalSpace(40),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/app/core/styles/app_button.dart';
 import 'package:portfolio/app/core/styles/app_color.dart';
 import 'package:portfolio/app/core/styles/app_text.dart';
 import 'package:portfolio/app/core/utils/ui_utils.dart';
@@ -7,8 +8,9 @@ import 'package:timelines_plus/timelines_plus.dart';
 
 class TimelineJourneyItem extends StatelessWidget {
   final List<JourneyModel> journeys;
+  final void Function(JourneyModel journey) onClick;
 
-  const TimelineJourneyItem({super.key, required this.journeys});
+  const TimelineJourneyItem({super.key, required this.journeys, required this.onClick});
 
   @override
   Widget build(BuildContext context) {
@@ -42,12 +44,12 @@ class TimelineJourneyItem extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                journeys.elementAt(index).major,
+                journeys.elementAt(index).title,
                 style: AppText.bold14,
               ),
               UIUtils.verticalSpace(4),
               Text(
-                "${journeys.elementAt(index).school}, ${journeys.elementAt(index).country}",
+                "${journeys.elementAt(index).institution}, ${journeys.elementAt(index).location}",
                 style: AppText.bold12Grey,
               ),
               UIUtils.verticalSpace(8),
@@ -63,9 +65,19 @@ class TimelineJourneyItem extends StatelessWidget {
                   ),
                   UIUtils.horizontalSpace(4),
                   Text(
-                      "${journeys.elementAt(index).startYear} - ${journeys.elementAt(index).endYear}",
-                      style: AppText.bold12Grey),
+                    "${journeys.elementAt(index).startDate} - ${journeys.elementAt(index).endDate}",
+                    style: AppText.bold12Grey,
+                  ),
                 ],
+              ),
+              UIUtils.verticalSpace(16),
+              FilledButton(
+                onPressed: () => onClick(journeys.elementAt(index)),
+                style: AppButton.smallFilledPrimary(context),
+                child: Text(
+                  "Read More",
+                  style: AppText.bold12,
+                ),
               ),
             ],
           ),

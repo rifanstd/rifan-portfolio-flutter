@@ -10,7 +10,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 class HomeController extends GetxController with StateMixin {
   // state
-  final selectedJourneyTab = JourneyEnum.experience.obs;
+  final selectedJourneyTab = JourneyEnum.education.obs;
 
   RxList<ServiceModel> services = <ServiceModel>[].obs;
   RxList<JourneyModel> educations = <JourneyModel>[].obs;
@@ -63,12 +63,14 @@ class HomeController extends GetxController with StateMixin {
       experiences.clear();
 
       for (var item in value) {
-        if (item.type == JourneyConstant.education) {
+        if (item.category == JourneyConstant.education) {
           educations.add(item);
-        } else if (item.type == JourneyConstant.experience) {
+        } else if (item.category == JourneyConstant.experience) {
           experiences.add(item);
         }
       }
+      educations.assignAll(educations.reversed.toList());
+      experiences.assignAll(experiences.reversed.toList());
     });
   }
 

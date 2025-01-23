@@ -18,7 +18,7 @@ class BottomMenu extends StatefulWidget {
 }
 
 class _BottomMenuState extends State<BottomMenu> {
-  final List<String> titles = ["Home", "Services", "Experiences", "Skills", "Projects"];
+  final List<String> titles = ["Home", "Services", "Journey", "Skills", "Projects"];
   final List<String> icons = [AppIcons.home, AppIcons.code, AppIcons.resume, AppIcons.file, AppIcons.gallery];
   @override
   Widget build(BuildContext context) {

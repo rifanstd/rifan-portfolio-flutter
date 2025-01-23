@@ -4,6 +4,7 @@ import 'package:portfolio/app/core/enums/journey_enum.dart';
 import 'package:portfolio/app/core/styles/app_color.dart';
 import 'package:portfolio/app/core/styles/app_text.dart';
 import 'package:portfolio/app/core/utils/ui_utils.dart';
+import 'package:portfolio/app/data/models/journey_model.dart';
 import 'package:portfolio/app/modules/home/controllers/home_controller.dart';
 import 'package:portfolio/app/modules/home/views/widgets/timeline_journey_item.dart';
 
@@ -29,26 +30,28 @@ class Journey extends GetView<HomeController> {
               _buildTabTitle(
                 title: "Experience",
                 context: context,
-                onClick: () =>
-                    controller.setSelectedJourneyTab(JourneyEnum.experience),
-                isSelected: controller.selectedJourneyTab.value ==
-                    JourneyEnum.experience,
+                onClick: () => controller.setSelectedJourneyTab(JourneyEnum.experience),
+                isSelected: controller.selectedJourneyTab.value == JourneyEnum.experience,
               ),
               _buildTabTitle(
                 title: "Education",
                 context: context,
-                onClick: () =>
-                    controller.setSelectedJourneyTab(JourneyEnum.education),
-                isSelected: controller.selectedJourneyTab.value ==
-                    JourneyEnum.education,
+                onClick: () => controller.setSelectedJourneyTab(JourneyEnum.education),
+                isSelected: controller.selectedJourneyTab.value == JourneyEnum.education,
               ),
             ],
           ),
           UIUtils.verticalSpace(20),
           if (controller.selectedJourneyTab.value == JourneyEnum.education)
-            TimelineJourneyItem(journeys: controller.educations)
+            TimelineJourneyItem(
+              journeys: controller.educations,
+              onClick: (journey) => _showDetailJourney(context: context, journey: journey),
+            )
           else
-            TimelineJourneyItem(journeys: controller.experiences),
+            TimelineJourneyItem(
+              journeys: controller.experiences,
+              onClick: (journey) => _showDetailJourney(context: context, journey: journey),
+            ),
         ],
       ),
     );
@@ -83,6 +86,77 @@ class Journey extends GetView<HomeController> {
                 ),
         ),
       ),
+    );
+  }
+
+  void _showDetailJourney({required BuildContext context, required JourneyModel journey}) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          backgroundColor: AppColor.background,
+          surfaceTintColor: AppColor.background,
+          actions: [
+            TextButton(
+              onPressed: () => Get.back(),
+              child: Text(
+                "Close",
+                style: AppText.bold14,
+              ),
+            ),
+          ],
+          content: Container(
+            constraints: const BoxConstraints(
+              maxWidth: 500,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    journey.title,
+                    style: AppText.bold16,
+                  ),
+                  UIUtils.verticalSpace(8),
+                  Text(
+                    "${journey.institution}, ${journey.location}",
+                    style: AppText.bold12Grey,
+                  ),
+                  UIUtils.verticalSpace(8),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(
+                        Icons.calendar_month_rounded,
+                        size: 16,
+                        color: Colors.grey,
+                      ),
+                      UIUtils.horizontalSpace(4),
+                      Text(
+                        "${journey.startDate} - ${journey.endDate}",
+                        style: AppText.bold12Grey,
+                      ),
+                    ],
+                  ),
+                  UIUtils.verticalSpace(16),
+                  Text(
+                    "Description",
+                    style: AppText.bold12,
+                  ),
+                  UIUtils.verticalSpace(8),
+                  Text(journey.description.isNotEmpty ? journey.description : "-"),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

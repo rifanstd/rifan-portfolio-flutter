@@ -1,22 +1,81 @@
 {
-    "data":[
-        {
-            "id": 1,
-            "major": "Bachelor's Degree in Computer Science",
-            "school": "Universitas Lampung",
-            "country": "Indonesia",
-            "start_year": "2020",
-            "end_year": "2024",
-            "type": "EDUCATION"
-        },
-        {
-            "id": 2,
-            "major": "High School Diploma",
-            "school": "SMAN 19 Kab. Tangerang",
-            "country": "Indonesia",
-            "start_year": "2017",
-            "end_year": "2020",
-            "type": "EDUCATION"
-        }
-    ]
+  "data": [
+    {
+      "id": 1,
+      "title": "High School Diploma",
+      "institution": "SMAN 19 Kab. Tangerang",
+      "location": "Indonesia",
+      "start_date": "2017",
+      "end_date": "2020",
+      "category": "EDUCATION",
+      "image_url": "",
+      "description": ""
+    },
+    {
+      "id": 2,
+      "title": "Bachelor's Degree in Computer Science",
+      "institution": "Universitas Lampung",
+      "location": "Indonesia",
+      "start_date": "2020",
+      "end_date": "2024",
+      "category": "EDUCATION",
+      "image_url": "",
+      "description": ""
+    },
+    {
+      "id": 3,
+      "title": "Assistant Lecturer",
+      "institution": "Universitas Lampung",
+      "location": "Indonesia",
+      "start_date": "2022",
+      "end_date": "2023",
+      "category": "EXPERIENCE",
+      "image_url": "",
+      "description": "Served as a teaching assistant, facilitating and teaching programming courses during practical sessions. The materials covered various concepts, including basic programming, structured programming, object-oriented programming, and web programming."
+    },
+    {
+      "id": 4,
+      "title": "Mobile Application Developer",
+      "institution": "Sewanue",
+      "location": "Indonesia",
+      "start_date": "2023",
+      "end_date": "2023",
+      "category": "EXPERIENCE",
+      "image_url": "",
+      "description": "Developed a nationwide sports field rental application for Indonesia, managing all stages from planning to implementation. Responsibilities included integrating Firebase, managing authentication, overseeing rental orders, handling user reviews, and designing user interfaces tailored to client preferences."
+    },
+    {
+      "id": 5,
+      "title": "Mobile Application Developer",
+      "institution": "Universitas Lampung",
+      "location": "Indonesia",
+      "start_date": "2024",
+      "end_date": "2024",
+      "category": "EXPERIENCE",
+      "image_url": "",
+      "description": "Developed mobile applications using the Flutter framework and integrated them with several third-party services, including Firebase, Payment Gateway, RajaOngkir API, and OneSignal. The applications created include OneData Unila (Unila Academic Portal) and UnilaHub (Unila E-Commerce)."
+    },
+    {
+      "id": 6,
+      "title": "Mobile Application Developer",
+      "institution": "PT Coolva Teknologi Indonesia",
+      "location": "Indonesia",
+      "start_date": "2022",
+      "end_date": "Present",
+      "category": "EXPERIENCE",
+      "image_url": "",
+      "description": "Worked as a freelance mobile developer in a group or startup that provides application development services. I was involved in various phases of development, from design to maintenance."
+    },
+    {
+      "id": 7,
+      "title": "Mobile Application Developer",
+      "institution": "PT Bank Negara Indonesia (Persero) Tbk",
+      "location": "Indonesia",
+      "start_date": "2024",
+      "end_date": "Present",
+      "category": "EXPERIENCE",
+      "image_url": "",
+      "description": "I work as a Mobile Application Developer, developing applications for users in Indonesia and abroad. In this job, I am involved in various stages of development, from planning, design, implementation, to application maintenance. My focus is on creating applications that are functional, easy to use, and fit the needs of users in various markets."
+    }
+  ]
 }

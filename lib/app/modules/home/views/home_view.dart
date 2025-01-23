@@ -26,44 +26,37 @@ class HomeView extends GetView<HomeController> {
         child: controller.obx(
           (state) {
             return ConstrainedBox(
-              constraints:
-                  BoxConstraints(minWidth: Get.width, minHeight: Get.height),
+              constraints: BoxConstraints(minWidth: Get.width, minHeight: Get.height),
               child: Stack(
                 children: [
-                  SingleChildScrollView(
-                    child: Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: horizontalPadding),
-                      child: Column(
-                        children: [
-                          UIUtils.verticalSpace(
-                              ScreenUtils.isLargeScreen(context) ? 200 : 100),
-                          const Jumbotron(),
-                          UIUtils.verticalSpace(
-                              ScreenUtils.isLargeScreen(context) ? 100 : 60),
-                          const ServiceSection(),
-                          UIUtils.verticalSpace(
-                              ScreenUtils.isLargeScreen(context) ? 100 : 60),
-                          const Journey(),
-                          UIUtils.verticalSpace(100),
-                        ],
+                  ListView(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+                        child: Column(
+                          children: [
+                            UIUtils.verticalSpace(ScreenUtils.isLargeScreen(context) ? 200 : 100),
+                            const Jumbotron(),
+                            UIUtils.verticalSpace(ScreenUtils.isLargeScreen(context) ? 80 : 40),
+                            const ServiceSection(),
+                            UIUtils.verticalSpace(ScreenUtils.isLargeScreen(context) ? 80 : 40),
+                            const Journey(),
+                            UIUtils.verticalSpace(80),
+                          ],
+                        ),
                       ),
-                    ),
+                    ],
                   ),
 
                   // Harus paling bawah
                   // TODO @Rifan : handle scroll and navigation to each section
-                  if (ScreenUtils.isLargeScreen(context))
-                    const Navbar()
-                  else
-                    const BottomMenu(),
+                  if (ScreenUtils.isLargeScreen(context)) const Navbar() else const BottomMenu(),
                 ],
               ),
             );
           },
           onLoading: ConstrainedBox(
-            constraints:
-                BoxConstraints(minHeight: Get.height, minWidth: Get.width),
+            constraints: BoxConstraints(minHeight: Get.height, minWidth: Get.width),
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
               child: Column(

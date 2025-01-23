@@ -31,8 +31,7 @@ class ServiceSection extends GetView<HomeController> {
             (index) {
               return ServiceItemCard(
                 service: controller.services.elementAt(index),
-                onClick: (service) =>
-                    _showDetailServiceDialog(context, service),
+                onClick: (service) => _showDetailServiceDialog(context, service),
               );
             },
           ),
@@ -46,8 +45,7 @@ class ServiceSection extends GetView<HomeController> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           backgroundColor: AppColor.background,
           surfaceTintColor: AppColor.background,
           actions: [
@@ -61,7 +59,7 @@ class ServiceSection extends GetView<HomeController> {
           ],
           content: Container(
             constraints: const BoxConstraints(
-              maxWidth: 300,
+              maxWidth: 500,
             ),
             child: Padding(
               padding: const EdgeInsets.all(16.0),
