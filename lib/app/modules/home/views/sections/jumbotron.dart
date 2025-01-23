@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:portfolio/app/core/enums/url_enum.dart';
+import 'package:portfolio/app/core/styles/app_button.dart';
 import 'package:portfolio/app/core/styles/app_color.dart';
 import 'package:portfolio/app/core/styles/app_text.dart';
 import 'package:portfolio/app/core/utils/screen_utils.dart';
@@ -17,7 +18,9 @@ class Jumbotron extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtils.isLargeScreen(context) ? _largeScreenLayout(context) : _smallScreenLayout(context);
+    return ScreenUtils.isLargeScreen(context)
+        ? _largeScreenLayout(context)
+        : _smallScreenLayout(context);
   }
 
   Column _smallScreenLayout(BuildContext context) {
@@ -92,17 +95,12 @@ class Jumbotron extends GetView<HomeController> {
       ),
       icon: SvgPicture.asset(
         AppIcons.send,
-        colorFilter: const ColorFilter.mode(AppColor.background, BlendMode.srcIn),
+        colorFilter:
+            const ColorFilter.mode(AppColor.background, BlendMode.srcIn),
         width: 24,
       ),
       iconAlignment: IconAlignment.end,
-      style: FilledButton.styleFrom(
-        backgroundColor: AppColor.primary,
-        padding: EdgeInsets.symmetric(vertical: ScreenUtils.isLargeScreen(context) ? 24 : 16, horizontal: 30),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
-      ),
+      style: AppButton.filledPrimary(context),
     );
   }
 
@@ -119,7 +117,8 @@ class Jumbotron extends GetView<HomeController> {
         Container(
           width: ScreenUtils.isLargeScreen(context) ? 50 : 30,
           decoration: BoxDecoration(
-            border: const Border(top: BorderSide(color: Colors.black, width: 1)),
+            border:
+                const Border(top: BorderSide(color: Colors.black, width: 1)),
             borderRadius: BorderRadius.circular(10),
           ),
         ),
@@ -185,7 +184,9 @@ class Jumbotron extends GetView<HomeController> {
           width: 24,
         ),
       ),
-      isVerticalLayout ? UIUtils.verticalSpace(32) : UIUtils.horizontalSpace(24),
+      isVerticalLayout
+          ? UIUtils.verticalSpace(32)
+          : UIUtils.horizontalSpace(24),
       InkWell(
         onTap: () async => controller.openSocialMedia(UrlEnum.github),
         child: SvgPicture.asset(
@@ -193,7 +194,9 @@ class Jumbotron extends GetView<HomeController> {
           width: 24,
         ),
       ),
-      isVerticalLayout ? UIUtils.verticalSpace(32) : UIUtils.horizontalSpace(24),
+      isVerticalLayout
+          ? UIUtils.verticalSpace(32)
+          : UIUtils.horizontalSpace(24),
       InkWell(
         onTap: () async => controller.openSocialMedia(UrlEnum.instagram),
         child: SvgPicture.asset(

@@ -1,0 +1,22 @@
+{
+    "data":[
+        {
+            "id": 1,
+            "major": "Bachelor's Degree in Computer Science",
+            "school": "Universitas Lampung",
+            "country": "Indonesia",
+            "start_year": "2020",
+            "end_year": "2024",
+            "type": "EDUCATION"
+        },
+        {
+            "id": 2,
+            "major": "High School Diploma",
+            "school": "SMAN 19 Kab. Tangerang",
+            "country": "Indonesia",
+            "start_year": "2017",
+            "end_year": "2020",
+            "type": "EDUCATION"
+        }
+    ]
+}

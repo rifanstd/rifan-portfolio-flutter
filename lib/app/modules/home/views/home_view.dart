@@ -8,6 +8,7 @@ import 'package:portfolio/app/core/utils/ui_utils.dart';
 import 'package:portfolio/app/core/values/app_icons.dart';
 import 'package:portfolio/app/core/values/app_lottie.dart';
 import 'package:portfolio/app/modules/home/views/sections/bottom_menu.dart';
+import 'package:portfolio/app/modules/home/views/sections/journey.dart';
 import 'package:portfolio/app/modules/home/views/sections/jumbotron.dart';
 import 'package:portfolio/app/modules/home/views/sections/navbar.dart';
 import 'package:portfolio/app/modules/home/views/sections/service_section.dart';
@@ -41,6 +42,9 @@ class HomeView extends GetView<HomeController> {
                           UIUtils.verticalSpace(
                               ScreenUtils.isLargeScreen(context) ? 100 : 60),
                           const ServiceSection(),
+                          UIUtils.verticalSpace(
+                              ScreenUtils.isLargeScreen(context) ? 100 : 60),
+                          const Journey(),
                           UIUtils.verticalSpace(100),
                         ],
                       ),

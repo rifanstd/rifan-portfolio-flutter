@@ -1,8 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/app/core/styles/app_color.dart';
 
 class AppText {
   AppText._();
+
+  static TextTheme get defaultTextTheme {
+    TextStyle textStyle = GoogleFonts.nunito(color: AppColor.primary);
+
+    return GoogleFonts.nunitoTextTheme().copyWith(
+      bodyLarge: textStyle,
+      bodyMedium: textStyle,
+      bodySmall: textStyle,
+      displayLarge: textStyle,
+      displayMedium: textStyle,
+      displaySmall: textStyle,
+      headlineLarge: textStyle,
+      headlineMedium: textStyle,
+      headlineSmall: textStyle,
+      labelLarge: textStyle,
+      labelMedium: textStyle,
+      labelSmall: textStyle,
+      titleLarge: textStyle,
+      titleMedium: textStyle,
+      titleSmall: textStyle,
+    );
+  }
 
   static TextStyle get navItemStyle {
     return const TextStyle(fontWeight: FontWeight.bold);
@@ -20,6 +43,42 @@ class AppText {
     return const TextStyle(
       fontSize: 20,
       fontWeight: FontWeight.normal,
+    );
+  }
+
+  static TextStyle get bold20 {
+    return const TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.bold,
+    );
+  }
+
+  static TextStyle get bold16 {
+    return const TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.bold,
+    );
+  }
+
+  static TextStyle get bold14 {
+    return const TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.bold,
+    );
+  }
+
+  static TextStyle get bold12 {
+    return const TextStyle(
+      fontSize: 12,
+      fontWeight: FontWeight.bold,
+    );
+  }
+
+  static TextStyle get bold12Grey {
+    return const TextStyle(
+      color: Colors.grey,
+      fontSize: 12,
+      fontWeight: FontWeight.bold,
     );
   }
 
