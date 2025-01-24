@@ -18,8 +18,20 @@ class BottomMenu extends StatefulWidget {
 }
 
 class _BottomMenuState extends State<BottomMenu> {
-  final List<String> titles = ["Home", "Services", "Journey", "Skills", "Projects"];
-  final List<String> icons = [AppIcons.home, AppIcons.code, AppIcons.resume, AppIcons.file, AppIcons.gallery];
+  final List<String> titles = [
+    "Home",
+    "Services",
+    "Journey",
+    "Projects",
+    "Skills"
+  ];
+  final List<String> icons = [
+    AppIcons.home,
+    AppIcons.code,
+    AppIcons.resume,
+    AppIcons.file,
+    AppIcons.gallery
+  ];
   @override
   Widget build(BuildContext context) {
     final screenWidth = ScreenUtils.getScreenWidth(context);
@@ -115,7 +127,9 @@ class _BottomMenuState extends State<BottomMenu> {
                     titles.elementAt(index),
                     style: AppText.navItemStyle.copyWith(
                       fontSize: 12,
-                      color: widget.selectedMenu == index ? AppColor.primary : Colors.black.withOpacity(.8),
+                      color: widget.selectedMenu == index
+                          ? AppColor.primary
+                          : Colors.black.withOpacity(.8),
                     ),
                   )
                 ],

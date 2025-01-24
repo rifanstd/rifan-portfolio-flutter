@@ -21,4 +21,12 @@ class AppIcons {
   static const String gear = "assets/svg/gear.svg";
   static const String close = "assets/svg/close.svg";
   static const String check = "assets/svg/check.svg";
+  static const String flutter = "assets/svg/flutter.svg";
+  static const String dart = "assets/svg/dart.svg";
+  static const String firebase = "assets/svg/firebase.svg";
+  static const String android = "assets/svg/android.svg";
+  static const String expressJS = "assets/svg/express_js.svg";
+  static const String javascript = "assets/svg/javascript.svg";
+  static const String figma = "assets/svg/figma.svg";
+  static const String kotlin = "assets/svg/kotlin.svg";
 }

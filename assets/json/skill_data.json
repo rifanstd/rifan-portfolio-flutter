@@ -1,0 +1,44 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Flutter",
+      "image_url": "assets/svg/flutter.svg"
+    },
+    {
+      "id": 2,
+      "name": "Dart",
+      "image_url": "assets/svg/dart.svg"
+    },
+    {
+      "id": 3,
+      "name": "Firebase",
+      "image_url": "assets/svg/firebase.svg"
+    },
+    {
+      "id": 4,
+      "name": "Kotlin",
+      "image_url": "assets/svg/kotlin.svg"
+    },
+    {
+      "id": 5,
+      "name": "Javascript",
+      "image_url": "assets/svg/javascript.svg"
+    },
+    {
+      "id": 6,
+      "name": "Android",
+      "image_url": "assets/svg/android.svg"
+    },
+    {
+      "id": 7,
+      "name": "Express.js",
+      "image_url": "assets/svg/express_js.svg"
+    },
+    {
+      "id": 8,
+      "name": "Figma",
+      "image_url": "assets/svg/figma.svg"
+    }
+  ]
+}

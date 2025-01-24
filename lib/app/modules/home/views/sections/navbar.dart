@@ -49,9 +49,9 @@ class Navbar extends GetView<HomeController> {
               UIUtils.horizontalSpace(40),
               _buildNavItem(name: "Journey", onClick: () {}),
               UIUtils.horizontalSpace(40),
-              _buildNavItem(name: "Skills", onClick: () {}),
-              UIUtils.horizontalSpace(40),
               _buildNavItem(name: "Projects", onClick: () {}),
+              UIUtils.horizontalSpace(40),
+              _buildNavItem(name: "Skills", onClick: () {}),
             ]
           ],
         ),
@@ -59,7 +59,8 @@ class Navbar extends GetView<HomeController> {
     );
   }
 
-  Widget _buildNavItem({required String name, required void Function() onClick}) {
+  Widget _buildNavItem(
+      {required String name, required void Function() onClick}) {
     RxBool isHovered = false.obs;
 
     return Obx(

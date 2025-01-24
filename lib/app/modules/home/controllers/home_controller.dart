@@ -5,6 +5,7 @@ import 'package:portfolio/app/core/enums/url_enum.dart';
 import 'package:portfolio/app/core/values/urls.dart';
 import 'package:portfolio/app/data/models/journey_model.dart';
 import 'package:portfolio/app/data/models/service_model.dart';
+import 'package:portfolio/app/data/models/skill_model.dart';
 import 'package:portfolio/app/data/repositories/service_repository.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -15,6 +16,7 @@ class HomeController extends GetxController with StateMixin {
   RxList<ServiceModel> services = <ServiceModel>[].obs;
   RxList<JourneyModel> educations = <JourneyModel>[].obs;
   RxList<JourneyModel> experiences = <JourneyModel>[].obs;
+  RxList<SkillModel> skills = <SkillModel>[].obs;
 
   @override
   void onInit() async {
@@ -40,6 +42,7 @@ class HomeController extends GetxController with StateMixin {
       await Future.wait([
         fetchServiceData(),
         fetchJourneyData(),
+        fetchSkillData(),
       ]);
 
       change(null, status: RxStatus.success());
@@ -51,14 +54,21 @@ class HomeController extends GetxController with StateMixin {
   }
 
   Future<void> fetchServiceData() async {
-    await Get.find<ServiceRepository>().getLocalServices().then((value) {
+    await Get.find<LocalRepository>().getLocalServices().then((value) {
       services.clear();
       services.assignAll(value);
     });
   }
 
+  Future<void> fetchSkillData() async {
+    await Get.find<LocalRepository>().getLocalSkills().then((value) {
+      skills.clear();
+      skills.assignAll(value);
+    });
+  }
+
   Future<void> fetchJourneyData() async {
-    await Get.find<ServiceRepository>().getLocalJourneys().then((value) {
+    await Get.find<LocalRepository>().getLocalJourneys().then((value) {
       educations.clear();
       experiences.clear();
 

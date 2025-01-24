@@ -12,6 +12,7 @@ import 'package:portfolio/app/modules/home/views/sections/journey.dart';
 import 'package:portfolio/app/modules/home/views/sections/jumbotron.dart';
 import 'package:portfolio/app/modules/home/views/sections/navbar.dart';
 import 'package:portfolio/app/modules/home/views/sections/service_section.dart';
+import 'package:portfolio/app/modules/home/views/sections/skills.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -26,21 +27,34 @@ class HomeView extends GetView<HomeController> {
         child: controller.obx(
           (state) {
             return ConstrainedBox(
-              constraints: BoxConstraints(minWidth: Get.width, minHeight: Get.height),
+              constraints:
+                  BoxConstraints(minWidth: Get.width, minHeight: Get.height),
               child: Stack(
                 children: [
                   ListView(
                     children: [
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: horizontalPadding),
                         child: Column(
                           children: [
-                            UIUtils.verticalSpace(ScreenUtils.isLargeScreen(context) ? 200 : 100),
+                            UIUtils.verticalSpace(
+                                ScreenUtils.isLargeScreen(context) ? 200 : 100),
                             const Jumbotron(),
-                            UIUtils.verticalSpace(ScreenUtils.isLargeScreen(context) ? 80 : 40),
+                            UIUtils.verticalSpace(
+                                ScreenUtils.isLargeScreen(context) ? 80 : 40),
                             const ServiceSection(),
-                            UIUtils.verticalSpace(ScreenUtils.isLargeScreen(context) ? 80 : 40),
+                            UIUtils.verticalSpace(
+                                ScreenUtils.isLargeScreen(context) ? 80 : 40),
                             const Journey(),
+                            // UIUtils.verticalSpace(
+                            //     ScreenUtils.isLargeScreen(context) ? 80 : 40),
+                            // Projects
+                            UIUtils.verticalSpace(
+                                ScreenUtils.isLargeScreen(context) ? 80 : 40),
+                            const Skills(),
+                            UIUtils.verticalSpace(
+                                ScreenUtils.isLargeScreen(context) ? 80 : 40),
                             UIUtils.verticalSpace(80),
                           ],
                         ),
@@ -50,13 +64,17 @@ class HomeView extends GetView<HomeController> {
 
                   // Harus paling bawah
                   // TODO @Rifan : handle scroll and navigation to each section
-                  if (ScreenUtils.isLargeScreen(context)) const Navbar() else const BottomMenu(),
+                  if (ScreenUtils.isLargeScreen(context))
+                    const Navbar()
+                  else
+                    const BottomMenu(),
                 ],
               ),
             );
           },
           onLoading: ConstrainedBox(
-            constraints: BoxConstraints(minHeight: Get.height, minWidth: Get.width),
+            constraints:
+                BoxConstraints(minHeight: Get.height, minWidth: Get.width),
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
               child: Column(

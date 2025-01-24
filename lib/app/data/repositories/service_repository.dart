@@ -4,8 +4,9 @@ import 'package:flutter/services.dart';
 import 'package:portfolio/app/core/values/app_json.dart';
 import 'package:portfolio/app/data/models/journey_model.dart';
 import 'package:portfolio/app/data/models/service_model.dart';
+import 'package:portfolio/app/data/models/skill_model.dart';
 
-class ServiceRepository {
+class LocalRepository {
   Future<List<ServiceModel>> getLocalServices() async {
     final List<ServiceModel> services = [];
 
@@ -30,5 +31,18 @@ class ServiceRepository {
     }
 
     return journeys;
+  }
+
+  Future<List<SkillModel>> getLocalSkills() async {
+    final List<SkillModel> skills = [];
+
+    final response = await rootBundle.loadString(AppJson.skillData);
+    final data = jsonDecode(response)['data'];
+
+    for (var item in data) {
+      skills.add(SkillModel.fromJson(item));
+    }
+
+    return skills;
   }
 }
