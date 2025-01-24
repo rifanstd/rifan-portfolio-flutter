@@ -53,6 +53,13 @@ class AppText {
     );
   }
 
+  static TextStyle get bold18 {
+    return const TextStyle(
+      fontSize: 18,
+      fontWeight: FontWeight.bold,
+    );
+  }
+
   static TextStyle get bold16 {
     return const TextStyle(
       fontSize: 16,
