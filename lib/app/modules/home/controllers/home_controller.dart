@@ -96,12 +96,37 @@ class HomeController extends GetxController with StateMixin {
         case UrlEnum.instagram:
           await launchUrl(Uri.parse(Urls.instagram));
           break;
+        case UrlEnum.whatsapp:
+          await launchUrl(Uri.parse(Urls.whatsapp));
+          break;
+        case UrlEnum.email:
+          await sendEmail();
+          break;
       }
     } catch (e) {
       Get.log("Cannot open the url");
       Get.log(e.toString());
       throw Exception(e);
     }
+  }
+
+  Future<void> sendEmail() async {
+    final Uri emailLaunchUri = Uri(
+      scheme: 'mailto',
+      path: Urls.email,
+      query: encodeQueryParameters(<String, String>{
+        'subject': 'Let\'s work together!',
+      }),
+    );
+
+    await launchUrl(emailLaunchUri);
+  }
+
+  String? encodeQueryParameters(Map<String, String> params) {
+    return params.entries
+        .map((MapEntry<String, String> e) =>
+            '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+        .join('&');
   }
 
   void setSelectedJourneyTab(JourneyEnum tab) {
