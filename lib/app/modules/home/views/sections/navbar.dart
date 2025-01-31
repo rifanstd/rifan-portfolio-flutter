@@ -17,43 +17,79 @@ class Navbar extends GetView<HomeController> {
     final screenWidth = ScreenUtils.getScreenWidth(context);
     final horizontalPadding = ScreenUtils.getHorizontalPadding(context);
 
-    return Container(
-      width: screenWidth,
-      padding: const EdgeInsets.symmetric(vertical: 16),
-      decoration: BoxDecoration(
-        color: AppColor.background,
-        // border: Border(
-        //   bottom: BorderSide(
-        //     color: Colors.grey.withOpacity(.2),
-        //   ),
-        // ),
-      ),
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: SvgPicture.asset(
-                AppIcons.logo,
-                width: 120,
+    return Obx(
+      () => Container(
+        width: screenWidth,
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        decoration: BoxDecoration(
+          color: AppColor.background,
+          border: controller.isScrolled.isTrue
+              ? Border(
+                  bottom: BorderSide(
+                    color: Colors.grey.withOpacity(.2),
+                  ),
+                )
+              : null,
+        ),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: SvgPicture.asset(
+                  AppIcons.logo,
+                  width: 120,
+                ),
               ),
-            ),
-            const Spacer(),
-            if (!ScreenUtils.isSmallScreen(context)) ...[
-              _buildNavItem(name: "Hello!", onClick: () {}),
-              UIUtils.horizontalSpace(40),
-              _buildNavItem(name: "Services", onClick: () {}),
-              UIUtils.horizontalSpace(40),
-              _buildNavItem(name: "Journey", onClick: () {}),
-              UIUtils.horizontalSpace(40),
-              _buildNavItem(name: "Projects", onClick: () {}),
-              UIUtils.horizontalSpace(40),
-              _buildNavItem(name: "Skills", onClick: () {}),
-            ]
-          ],
+              const Spacer(),
+              if (!ScreenUtils.isSmallScreen(context)) ...[
+                _buildNavItem(
+                  name: "Hello!",
+                  onClick: () {
+                    controller.scrollToSection(controller.jumbotronKey);
+                  },
+                ),
+                UIUtils.horizontalSpace(40),
+                _buildNavItem(
+                  name: "Services",
+                  onClick: () {
+                    controller.scrollToSection(controller.serviceKey);
+                  },
+                ),
+                UIUtils.horizontalSpace(40),
+                _buildNavItem(
+                  name: "Journey",
+                  onClick: () {
+                    controller.scrollToSection(controller.journeyKey);
+                  },
+                ),
+                UIUtils.horizontalSpace(40),
+                _buildNavItem(
+                  name: "Projects",
+                  onClick: () {
+                    controller.scrollToSection(controller.projectKey);
+                  },
+                ),
+                UIUtils.horizontalSpace(40),
+                _buildNavItem(
+                  name: "Skills",
+                  onClick: () {
+                    controller.scrollToSection(controller.skillKey);
+                  },
+                ),
+                UIUtils.horizontalSpace(40),
+                _buildNavItem(
+                  name: "Contact",
+                  onClick: () {
+                    controller.scrollToSection(controller.contactKey);
+                  },
+                ),
+              ]
+            ],
+          ),
         ),
       ),
     );

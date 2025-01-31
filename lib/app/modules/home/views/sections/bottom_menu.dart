@@ -6,32 +6,11 @@ import 'package:portfolio/app/core/styles/app_text.dart';
 import 'package:portfolio/app/core/utils/screen_utils.dart';
 import 'package:portfolio/app/core/utils/ui_utils.dart';
 import 'package:portfolio/app/core/values/app_icons.dart';
+import 'package:portfolio/app/modules/home/controllers/home_controller.dart';
 
-class BottomMenu extends StatefulWidget {
+class BottomMenu extends GetView<HomeController> {
   const BottomMenu({super.key});
 
-  // TODO @Rifan remove later
-  final int selectedMenu = 1;
-
-  @override
-  State<BottomMenu> createState() => _BottomMenuState();
-}
-
-class _BottomMenuState extends State<BottomMenu> {
-  final List<String> titles = [
-    "Home",
-    "Services",
-    "Journey",
-    "Projects",
-    "Skills"
-  ];
-  final List<String> icons = [
-    AppIcons.home,
-    AppIcons.code,
-    AppIcons.resume,
-    AppIcons.file,
-    AppIcons.gallery
-  ];
   @override
   Widget build(BuildContext context) {
     final screenWidth = ScreenUtils.getScreenWidth(context);
@@ -104,39 +83,86 @@ class _BottomMenuState extends State<BottomMenu> {
           crossAxisAlignment: WrapCrossAlignment.center,
           spacing: 32,
           runSpacing: 32,
-          children: List.generate(titles.length, (index) {
-            return InkWell(
-              onTap: () {
+          // children: List.generate(titles.length, (index) {
+          //   return _buildBottomMenuItem(index);
+          // }),
+          children: [
+            _buildBottomMenuItem(
+              iconPath: AppIcons.home,
+              title: "Home",
+              onClick: () {
                 Get.back();
+                controller.scrollToSection(controller.jumbotronKey);
               },
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SvgPicture.asset(
-                    icons.elementAt(index),
-                    width: 24,
-                    colorFilter: widget.selectedMenu == index
-                        ? null
-                        : ColorFilter.mode(
-                            Colors.black.withOpacity(.8),
-                            BlendMode.srcIn,
-                          ),
-                  ),
-                  UIUtils.verticalSpace(8),
-                  Text(
-                    titles.elementAt(index),
-                    style: AppText.navItemStyle.copyWith(
-                      fontSize: 12,
-                      color: widget.selectedMenu == index
-                          ? AppColor.primary
-                          : Colors.black.withOpacity(.8),
-                    ),
-                  )
-                ],
-              ),
-            );
-          }),
+            ),
+            _buildBottomMenuItem(
+              iconPath: AppIcons.code,
+              title: "Services",
+              onClick: () {
+                Get.back();
+                controller.scrollToSection(controller.serviceKey);
+              },
+            ),
+            _buildBottomMenuItem(
+              iconPath: AppIcons.resume,
+              title: "Journey",
+              onClick: () {
+                Get.back();
+                controller.scrollToSection(controller.journeyKey);
+              },
+            ),
+            _buildBottomMenuItem(
+              iconPath: AppIcons.gallery,
+              title: "Projects",
+              onClick: () {
+                Get.back();
+                controller.scrollToSection(controller.projectKey);
+              },
+            ),
+            _buildBottomMenuItem(
+              iconPath: AppIcons.file,
+              title: "Skills",
+              onClick: () {
+                Get.back();
+                controller.scrollToSection(controller.skillKey);
+              },
+            ),
+            _buildBottomMenuItem(
+              iconPath: AppIcons.send,
+              title: "Contact",
+              onClick: () {
+                Get.back();
+                controller.scrollToSection(controller.contactKey);
+              },
+            ),
+          ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildBottomMenuItem({
+    required String iconPath,
+    required String title,
+    required void Function() onClick,
+  }) {
+    return InkWell(
+      onTap: onClick,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SvgPicture.asset(
+            iconPath,
+            width: 24,
+          ),
+          UIUtils.verticalSpace(8),
+          Text(
+            title,
+            style: AppText.navItemStyle.copyWith(
+              fontSize: 12,
+            ),
+          )
+        ],
       ),
     );
   }

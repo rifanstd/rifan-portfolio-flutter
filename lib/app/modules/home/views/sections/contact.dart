@@ -10,8 +10,8 @@ import 'package:portfolio/app/core/utils/ui_utils.dart';
 import 'package:portfolio/app/core/values/app_icons.dart';
 import 'package:portfolio/app/modules/home/controllers/home_controller.dart';
 
-class ConcactMe extends GetView<HomeController> {
-  const ConcactMe({super.key});
+class ContactMe extends GetView<HomeController> {
+  const ContactMe({super.key});
 
   @override
   Widget build(BuildContext context) {

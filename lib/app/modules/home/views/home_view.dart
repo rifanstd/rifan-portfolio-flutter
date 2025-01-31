@@ -9,11 +9,13 @@ import 'package:portfolio/app/core/values/app_icons.dart';
 import 'package:portfolio/app/core/values/app_lottie.dart';
 import 'package:portfolio/app/modules/home/views/sections/bottom_menu.dart';
 import 'package:portfolio/app/modules/home/views/sections/contact.dart';
+import 'package:portfolio/app/modules/home/views/sections/footer.dart';
 import 'package:portfolio/app/modules/home/views/sections/journey.dart';
 import 'package:portfolio/app/modules/home/views/sections/jumbotron.dart';
 import 'package:portfolio/app/modules/home/views/sections/navbar.dart';
 import 'package:portfolio/app/modules/home/views/sections/service_section.dart';
 import 'package:portfolio/app/modules/home/views/sections/skills.dart';
+import 'package:portfolio/app/modules/home/views/widgets/section_anchor.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -33,36 +35,55 @@ class HomeView extends GetView<HomeController> {
               child: Stack(
                 children: [
                   ListView(
+                    controller: controller.scrollController,
                     children: [
                       Padding(
                         padding:
                             EdgeInsets.symmetric(horizontal: horizontalPadding),
                         child: Column(
                           children: [
+                            // JUMBOTRON
+                            SectionAnchor(sectionKey: controller.jumbotronKey),
                             UIUtils.verticalSpace(
                                 ScreenUtils.isLargeScreen(context) ? 200 : 100),
                             const Jumbotron(),
+
+                            // SERVICES
+                            SectionAnchor(sectionKey: controller.serviceKey),
                             UIUtils.verticalSpace(
                                 ScreenUtils.isLargeScreen(context) ? 80 : 40),
                             const ServiceSection(),
+
+                            // JOURNEY
+                            SectionAnchor(sectionKey: controller.journeyKey),
                             UIUtils.verticalSpace(
                                 ScreenUtils.isLargeScreen(context) ? 80 : 40),
                             const Journey(),
+
+                            // PROJECTS
                             // UIUtils.verticalSpace(
                             //     ScreenUtils.isLargeScreen(context) ? 80 : 40),
-                            // Projects
+                            // TODO @Rifan : add project section
+
+                            // SKILLS
+                            SectionAnchor(sectionKey: controller.skillKey),
                             UIUtils.verticalSpace(
                                 ScreenUtils.isLargeScreen(context) ? 80 : 40),
                             const Skills(),
+
+                            // CONTACT
+                            SectionAnchor(sectionKey: controller.contactKey),
                             UIUtils.verticalSpace(
                                 ScreenUtils.isLargeScreen(context) ? 80 : 40),
-                            const ConcactMe(),
-                            UIUtils.verticalSpace(
-                                ScreenUtils.isLargeScreen(context) ? 80 : 40),
-                            UIUtils.verticalSpace(80),
+                            const ContactMe(),
                           ],
                         ),
                       ),
+
+                      // FOOTER
+                      UIUtils.verticalSpace(
+                          ScreenUtils.isLargeScreen(context) ? 80 : 40),
+                      const Footer(),
                     ],
                   ),
 

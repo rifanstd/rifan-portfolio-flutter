@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:portfolio/app/core/constants/journey_constant.dart';
 import 'package:portfolio/app/core/enums/journey_enum.dart';
@@ -10,8 +11,20 @@ import 'package:portfolio/app/data/repositories/service_repository.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomeController extends GetxController with StateMixin {
+  // Scroll controller
+  final scrollController = ScrollController();
+
+  // key
+  final GlobalKey jumbotronKey = GlobalKey();
+  final GlobalKey serviceKey = GlobalKey();
+  final GlobalKey journeyKey = GlobalKey();
+  final GlobalKey skillKey = GlobalKey();
+  final GlobalKey projectKey = GlobalKey();
+  final GlobalKey contactKey = GlobalKey();
+
   // state
   final selectedJourneyTab = JourneyEnum.experience.obs;
+  final isScrolled = false.obs;
 
   RxList<ServiceModel> services = <ServiceModel>[].obs;
   RxList<JourneyModel> educations = <JourneyModel>[].obs;
@@ -21,6 +34,7 @@ class HomeController extends GetxController with StateMixin {
   @override
   void onInit() async {
     super.onInit();
+    scrollController.addListener(scrollListener);
     await initData();
   }
 
@@ -32,6 +46,27 @@ class HomeController extends GetxController with StateMixin {
   @override
   void onClose() {
     super.onClose();
+  }
+
+  void scrollListener() {
+    if (scrollController.hasClients) {
+      isScrolled.value = scrollController.offset > 50;
+    }
+  }
+
+  void scrollToSection(GlobalKey key) {
+    final context = key.currentContext;
+
+    if (context != null) {
+      RenderBox box = context.findRenderObject() as RenderBox;
+      double position = box.localToGlobal(Offset.zero).dy;
+
+      scrollController.animateTo(
+        position + scrollController.offset,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeInOut,
+      );
+    }
   }
 
   Future<void> initData() async {
