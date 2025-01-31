@@ -5,6 +5,7 @@ import 'package:portfolio/app/core/enums/url_enum.dart';
 import 'package:portfolio/app/core/styles/app_button.dart';
 import 'package:portfolio/app/core/styles/app_color.dart';
 import 'package:portfolio/app/core/styles/app_text.dart';
+import 'package:portfolio/app/core/utils/screen_utils.dart';
 import 'package:portfolio/app/core/utils/ui_utils.dart';
 import 'package:portfolio/app/core/values/app_icons.dart';
 import 'package:portfolio/app/modules/home/controllers/home_controller.dart';
@@ -22,98 +23,167 @@ class ConcactMe extends GetView<HomeController> {
         ...UIUtils.createSectionHeader(
             title: "Contact Me", subtitle: "Get in touch with me!"),
         UIUtils.verticalSpace(40),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: LayoutBuilder(
-                builder: (context, constraints) {
-                  return Align(
-                    alignment: Alignment.topRight,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Talk to me",
-                          style: AppText.bold18,
-                        ),
-                        UIUtils.verticalSpace(24),
-                        _buildContactOptionCard(
-                          constraints: constraints,
-                          imagePath: AppIcons.sendEmail,
-                          title: "Email",
-                          value: "rfan2442@gmail.com",
-                          onClick: () async {
-                            await controller.openSocialMedia(UrlEnum.email);
-                          },
-                        ),
-                        UIUtils.verticalSpace(16),
-                        _buildContactOptionCard(
-                          constraints: constraints,
-                          imagePath: AppIcons.whatsapp,
-                          title: "Whatsapp",
-                          value: "+62 896-3009-8684",
-                          onClick: () async {
-                            await controller.openSocialMedia(UrlEnum.whatsapp);
-                          },
-                        ),
-                      ],
+        ScreenUtils.isLargeScreen(context)
+            ? _largeScreen()
+            : _smallScreenWidgets(context),
+      ],
+    );
+  }
+
+  Widget _smallScreenWidgets(BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          "Talk to me",
+          style: AppText.bold18,
+        ),
+        UIUtils.verticalSpace(24),
+        _buildContactOptionCard(
+          boxWidth: double.infinity,
+          imagePath: AppIcons.sendEmail,
+          title: "Email",
+          value: "rfan2442@gmail.com",
+          onClick: () async {
+            await controller.openSocialMedia(UrlEnum.email);
+          },
+        ),
+        UIUtils.verticalSpace(16),
+        _buildContactOptionCard(
+          boxWidth: double.infinity,
+          imagePath: AppIcons.whatsapp,
+          title: "Whatsapp",
+          value: "+62 896-3009-8684",
+          onClick: () async {
+            await controller.openSocialMedia(UrlEnum.whatsapp);
+          },
+        ),
+        UIUtils.verticalSpace(24),
+        Text(
+          "Write me your project",
+          style: AppText.bold18,
+        ),
+        UIUtils.verticalSpace(24),
+        _buildFormField(
+          hint: "Insert your name",
+          label: "Name",
+          controller: TextEditingController(),
+          boxWidth: double.infinity,
+        ),
+        UIUtils.verticalSpace(32),
+        _buildFormField(
+          hint: "Insert your email",
+          label: "Email",
+          controller: TextEditingController(),
+          boxWidth: double.infinity,
+        ),
+        UIUtils.verticalSpace(32),
+        _buildFormField(
+          hint: "Write your project",
+          label: "Project",
+          controller: TextEditingController(),
+          boxWidth: double.infinity,
+          maxLines: 5,
+        ),
+        UIUtils.verticalSpace(16),
+        SizedBox(
+          width: double.infinity,
+          child: _buildSendMsgBtn(context),
+        ),
+      ],
+    );
+  }
+
+  Row _largeScreen() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              return Align(
+                alignment: Alignment.topRight,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Talk to me",
+                      style: AppText.bold18,
                     ),
-                  );
-                },
-              ),
-            ),
-            UIUtils.horizontalSpace(64),
-            Expanded(
-              child: LayoutBuilder(
-                builder: (context, constraints) {
-                  double boxWidth = constraints.maxWidth * 0.7;
-                  return Align(
-                    alignment: Alignment.topLeft,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Write me your project",
-                          style: AppText.bold18,
-                        ),
-                        UIUtils.verticalSpace(24),
-                        _buildFormField(
-                          hint: "Insert your name",
-                          label: "Name",
-                          controller: TextEditingController(),
-                          boxWidth: boxWidth,
-                        ),
-                        UIUtils.verticalSpace(32),
-                        _buildFormField(
-                          hint: "Insert your email",
-                          label: "Email",
-                          controller: TextEditingController(),
-                          boxWidth: boxWidth,
-                        ),
-                        UIUtils.verticalSpace(32),
-                        _buildFormField(
-                          hint: "Write your project",
-                          label: "Project",
-                          controller: TextEditingController(),
-                          boxWidth: boxWidth,
-                          maxLines: 5,
-                        ),
-                        UIUtils.verticalSpace(16),
-                        SizedBox(
-                          width: boxWidth,
-                          child: _buildSendMsgBtn(context),
-                        ),
-                      ],
+                    UIUtils.verticalSpace(24),
+                    _buildContactOptionCard(
+                      boxWidth: constraints.maxWidth * 0.7,
+                      imagePath: AppIcons.sendEmail,
+                      title: "Email",
+                      value: "rfan2442@gmail.com",
+                      onClick: () async {
+                        await controller.openSocialMedia(UrlEnum.email);
+                      },
                     ),
-                  );
-                },
-              ),
-            ),
-          ],
+                    UIUtils.verticalSpace(16),
+                    _buildContactOptionCard(
+                      boxWidth: constraints.maxWidth * 0.7,
+                      imagePath: AppIcons.whatsapp,
+                      title: "Whatsapp",
+                      value: "+62 896-3009-8684",
+                      onClick: () async {
+                        await controller.openSocialMedia(UrlEnum.whatsapp);
+                      },
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+        ),
+        UIUtils.horizontalSpace(64),
+        Expanded(
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              double boxWidth = constraints.maxWidth * 0.7;
+              return Align(
+                alignment: Alignment.topLeft,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Write me your project",
+                      style: AppText.bold18,
+                    ),
+                    UIUtils.verticalSpace(24),
+                    _buildFormField(
+                      hint: "Insert your name",
+                      label: "Name",
+                      controller: TextEditingController(),
+                      boxWidth: boxWidth,
+                    ),
+                    UIUtils.verticalSpace(32),
+                    _buildFormField(
+                      hint: "Insert your email",
+                      label: "Email",
+                      controller: TextEditingController(),
+                      boxWidth: boxWidth,
+                    ),
+                    UIUtils.verticalSpace(32),
+                    _buildFormField(
+                      hint: "Write your project",
+                      label: "Project",
+                      controller: TextEditingController(),
+                      boxWidth: boxWidth,
+                      maxLines: 5,
+                    ),
+                    UIUtils.verticalSpace(16),
+                    SizedBox(
+                      width: boxWidth,
+                      child: _buildSendMsgBtn(context),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
         ),
       ],
     );
@@ -166,7 +236,7 @@ class ConcactMe extends GetView<HomeController> {
   }
 
   Widget _buildContactOptionCard({
-    required BoxConstraints constraints,
+    required double boxWidth,
     required String imagePath,
     required String title,
     required String value,
@@ -175,7 +245,7 @@ class ConcactMe extends GetView<HomeController> {
     return InkWell(
       onTap: onClick,
       child: Container(
-        width: constraints.maxWidth * 0.7,
+        width: boxWidth,
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: AppColor.white,

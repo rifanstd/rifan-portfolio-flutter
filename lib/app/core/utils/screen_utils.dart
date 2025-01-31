@@ -26,7 +26,7 @@ class ScreenUtils {
     } else if (isMediumScreen(context)) {
       return 50.0;
     } else {
-      return 16.0;
+      return 24.0;
     }
   }
 }
