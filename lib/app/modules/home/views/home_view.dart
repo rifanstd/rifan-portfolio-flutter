@@ -34,57 +34,63 @@ class HomeView extends GetView<HomeController> {
                   BoxConstraints(minWidth: Get.width, minHeight: Get.height),
               child: Stack(
                 children: [
-                  ListView(
-                    controller: controller.scrollController,
-                    children: [
-                      Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: horizontalPadding),
-                        child: Column(
-                          children: [
-                            // JUMBOTRON
-                            SectionAnchor(sectionKey: controller.jumbotronKey),
-                            UIUtils.verticalSpace(
-                                ScreenUtils.isLargeScreen(context) ? 200 : 100),
-                            const Jumbotron(),
+                  RefreshIndicator(
+                    onRefresh: () async => await controller.initData(),
+                    child: ListView(
+                      controller: controller.scrollController,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: horizontalPadding),
+                          child: Column(
+                            children: [
+                              // JUMBOTRON
+                              SectionAnchor(
+                                  sectionKey: controller.jumbotronKey),
+                              UIUtils.verticalSpace(
+                                  ScreenUtils.isLargeScreen(context)
+                                      ? 200
+                                      : 100),
+                              const Jumbotron(),
 
-                            // SERVICES
-                            SectionAnchor(sectionKey: controller.serviceKey),
-                            UIUtils.verticalSpace(
-                                ScreenUtils.isLargeScreen(context) ? 80 : 40),
-                            const ServiceSection(),
+                              // SERVICES
+                              SectionAnchor(sectionKey: controller.serviceKey),
+                              UIUtils.verticalSpace(
+                                  ScreenUtils.isLargeScreen(context) ? 80 : 40),
+                              const ServiceSection(),
 
-                            // JOURNEY
-                            SectionAnchor(sectionKey: controller.journeyKey),
-                            UIUtils.verticalSpace(
-                                ScreenUtils.isLargeScreen(context) ? 80 : 40),
-                            const Journey(),
+                              // JOURNEY
+                              SectionAnchor(sectionKey: controller.journeyKey),
+                              UIUtils.verticalSpace(
+                                  ScreenUtils.isLargeScreen(context) ? 80 : 40),
+                              const Journey(),
 
-                            // PROJECTS
-                            // UIUtils.verticalSpace(
-                            //     ScreenUtils.isLargeScreen(context) ? 80 : 40),
-                            // TODO @Rifan : add project section
+                              // PROJECTS
+                              // UIUtils.verticalSpace(
+                              //     ScreenUtils.isLargeScreen(context) ? 80 : 40),
+                              // TODO @Rifan : add project section
 
-                            // SKILLS
-                            SectionAnchor(sectionKey: controller.skillKey),
-                            UIUtils.verticalSpace(
-                                ScreenUtils.isLargeScreen(context) ? 80 : 40),
-                            const Skills(),
+                              // SKILLS
+                              SectionAnchor(sectionKey: controller.skillKey),
+                              UIUtils.verticalSpace(
+                                  ScreenUtils.isLargeScreen(context) ? 80 : 40),
+                              const Skills(),
 
-                            // CONTACT
-                            SectionAnchor(sectionKey: controller.contactKey),
-                            UIUtils.verticalSpace(
-                                ScreenUtils.isLargeScreen(context) ? 80 : 40),
-                            const ContactMe(),
-                          ],
+                              // CONTACT
+                              SectionAnchor(sectionKey: controller.contactKey),
+                              UIUtils.verticalSpace(
+                                  ScreenUtils.isLargeScreen(context) ? 80 : 40),
+                              const ContactMe(),
+                            ],
+                          ),
                         ),
-                      ),
 
-                      // FOOTER
-                      UIUtils.verticalSpace(
-                          ScreenUtils.isLargeScreen(context) ? 80 : 40),
-                      const Footer(),
-                    ],
+                        // FOOTER
+                        UIUtils.verticalSpace(
+                            ScreenUtils.isLargeScreen(context) ? 80 : 40),
+                        const Footer(),
+                      ],
+                    ),
                   ),
 
                   // Harus paling bawah
