@@ -13,6 +13,7 @@ import 'package:portfolio/app/modules/home/views/sections/footer.dart';
 import 'package:portfolio/app/modules/home/views/sections/journey.dart';
 import 'package:portfolio/app/modules/home/views/sections/jumbotron.dart';
 import 'package:portfolio/app/modules/home/views/sections/navbar.dart';
+import 'package:portfolio/app/modules/home/views/sections/projects.dart';
 import 'package:portfolio/app/modules/home/views/sections/service_section.dart';
 import 'package:portfolio/app/modules/home/views/sections/skills.dart';
 import 'package:portfolio/app/modules/home/views/widgets/section_anchor.dart';
@@ -66,9 +67,10 @@ class HomeView extends GetView<HomeController> {
                               const Journey(),
 
                               // PROJECTS
-                              // UIUtils.verticalSpace(
-                              //     ScreenUtils.isLargeScreen(context) ? 80 : 40),
-                              // TODO @Rifan : add project section
+                              SectionAnchor(sectionKey: controller.projectKey),
+                              UIUtils.verticalSpace(
+                                  ScreenUtils.isLargeScreen(context) ? 80 : 40),
+                              const Projects(),
 
                               // SKILLS
                               SectionAnchor(sectionKey: controller.skillKey),

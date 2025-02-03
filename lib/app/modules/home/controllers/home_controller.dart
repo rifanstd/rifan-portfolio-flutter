@@ -5,6 +5,7 @@ import 'package:portfolio/app/core/enums/journey_enum.dart';
 import 'package:portfolio/app/core/enums/url_enum.dart';
 import 'package:portfolio/app/core/values/urls.dart';
 import 'package:portfolio/app/data/models/journey_model.dart';
+import 'package:portfolio/app/data/models/project_model.dart';
 import 'package:portfolio/app/data/models/service_model.dart';
 import 'package:portfolio/app/data/models/skill_model.dart';
 import 'package:portfolio/app/data/repositories/service_repository.dart';
@@ -30,6 +31,7 @@ class HomeController extends GetxController with StateMixin {
   RxList<JourneyModel> educations = <JourneyModel>[].obs;
   RxList<JourneyModel> experiences = <JourneyModel>[].obs;
   RxList<SkillModel> skills = <SkillModel>[].obs;
+  RxList<ProjectModel> projects = <ProjectModel>[].obs;
 
   @override
   void onInit() async {
@@ -78,6 +80,7 @@ class HomeController extends GetxController with StateMixin {
         fetchServiceData(),
         fetchJourneyData(),
         fetchSkillData(),
+        fetchProjectData(),
       ]);
 
       change(null, status: RxStatus.success());
@@ -116,6 +119,13 @@ class HomeController extends GetxController with StateMixin {
       }
       educations.assignAll(educations.reversed.toList());
       experiences.assignAll(experiences.reversed.toList());
+    });
+  }
+
+  Future<void> fetchProjectData() async {
+    await Get.find<LocalRepository>().getLocalProjects().then((value) {
+      projects.clear();
+      projects.assignAll(value);
     });
   }
 

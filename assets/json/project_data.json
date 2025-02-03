@@ -1,0 +1,15 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Sistem Informasi Pemilihan Umum Mahasiswa UIN SMH Banten",
+      "abreviation": "SIPUMA",
+      "description": "",
+      "role": "Project Manager",
+      "android_url_download": "",
+      "ios_url_download": "",
+      "download_count": "5k+ Download",
+      "image_url": "assets/svg/sipuma.svg"
+    }
+  ]
+}

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:portfolio/app/core/values/app_json.dart';
 import 'package:portfolio/app/data/models/journey_model.dart';
+import 'package:portfolio/app/data/models/project_model.dart';
 import 'package:portfolio/app/data/models/service_model.dart';
 import 'package:portfolio/app/data/models/skill_model.dart';
 
@@ -44,5 +45,18 @@ class LocalRepository {
     }
 
     return skills;
+  }
+
+  Future<List<ProjectModel>> getLocalProjects() async {
+    final List<ProjectModel> projects = [];
+
+    final response = await rootBundle.loadString(AppJson.projectData);
+    final data = jsonDecode(response)['data'];
+
+    for (var item in data) {
+      projects.add(ProjectModel.fromJson(item));
+    }
+
+    return projects;
   }
 }

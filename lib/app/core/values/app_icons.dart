@@ -31,4 +31,5 @@ class AppIcons {
   static const String kotlin = "assets/svg/kotlin.svg";
   static const String sendEmail = "assets/svg/send_email.svg";
   static const String whatsapp = "assets/svg/whatsapp.svg";
+  static const String sipuma = "assets/svg/sipuma.svg";
 }
