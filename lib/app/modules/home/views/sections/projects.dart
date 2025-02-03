@@ -108,7 +108,9 @@ class Projects extends GetView<HomeController> {
             SizedBox(
               width: double.infinity,
               child: FilledButton(
-                onPressed: () {},
+                onPressed: () {
+                  _showDetailProject(context: context, project: project);
+                },
                 style: AppButton.smallFilledPrimary(context),
                 child: const Text("Detail"),
               ),
@@ -116,6 +118,97 @@ class Projects extends GetView<HomeController> {
           ],
         ),
       ),
+    );
+  }
+
+  void _showDetailProject({required BuildContext context, required ProjectModel project}) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          backgroundColor: AppColor.background,
+          surfaceTintColor: AppColor.background,
+          actions: [
+            TextButton(
+              onPressed: () => Get.back(),
+              child: Text(
+                "Close",
+                style: AppText.bold14,
+              ),
+            ),
+          ],
+          content: Container(
+            constraints: const BoxConstraints(
+              maxWidth: 500,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset(
+                        project.imageUrl ?? AppIcons.logo,
+                        width: 50,
+                      ),
+                      UIUtils.horizontalSpace(16),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            project.abreviation ?? "",
+                            style: AppText.bold16,
+                          ),
+                          Text(
+                            project.name ?? "",
+                            style: AppText.bold12,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  UIUtils.verticalSpace(8),
+                  // Text(
+                  //   "${project.institution}, ${project.location}",
+                  //   style: AppText.bold12Grey,
+                  // ),
+                  UIUtils.verticalSpace(8),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(
+                        Icons.calendar_month_rounded,
+                        size: 16,
+                        color: Colors.grey,
+                      ),
+                      UIUtils.horizontalSpace(4),
+                      // Text(
+                      //   "${project.startDate} - ${project.endDate}",
+                      //   style: AppText.bold12Grey,
+                      // ),
+                    ],
+                  ),
+                  UIUtils.verticalSpace(16),
+                  Text(
+                    "Description",
+                    style: AppText.bold12,
+                  ),
+                  UIUtils.verticalSpace(8),
+                  // Text(project.description.isNotEmpty ? project.description : "-"),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }
