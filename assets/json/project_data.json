@@ -5,21 +5,43 @@
       "name": "Sistem Informasi Pemilihan Umum Mahasiswa UIN SMH Banten",
       "abreviation": "SIPUMA",
       "description": "I developed SIPUMA, a student election application for UIN SMH Banten, as a Project Manager and Mobile Developer. Built with Flutter and Firebase, SIPUMA ensures secure, transparent, and efficient elections through data encryption, a one-device-one-vote system, integrated authentication, and real-time vote counting. Leading a team of six, I managed development, designed the system architecture, and conducted large-scale testing with 1,000+ users. As a result, voter participation increased by 40%, vote counting time was reduced from days to minutes, and SIPUMA was officially adopted as the university's election platform starting in 2025.",
-      "role": "Project Manager",
+      "role": "Project Manager, Mobile Developer",
       "android_url_download": "https://play.google.com/store/apps/details?id=id.ac.uinbanten.pum",
       "ios_url_download": "https://apps.apple.com/id/app/sipuma-uin-smh-banten/id6739735650",
       "download_count": "5k+ Download",
-      "image_url": "assets/images/sipuma.png"
+      "image_url": "assets/images/sipuma.png",
+      "target_platform": "Android, iOS"
     },
     {
       "id": 2,
       "name": "Ojek Mahasiswa Gesit Aman",
       "abreviation": "OMAGA",
-      "description": "I developed SIPUMA, a student election application for UIN SMH Banten, as a Project Manager and Mobile Developer. Built with Flutter and Firebase, SIPUMA ensures secure, transparent, and efficient elections through data encryption, a one-device-one-vote system, integrated authentication, and real-time vote counting. Leading a team of six, I managed development, designed the system architecture, and conducted large-scale testing with 1,000+ users. As a result, voter participation increased by 40%, vote counting time was reduced from days to minutes, and SIPUMA was officially adopted as the university's election platform starting in 2025.",
-      "role": "Project Manager",
-      "android_url_download": "https://play.google.com/store/apps/details?id=id.ac.uinbanten.pum",
+      "description": "Omaga (Ojek Mahasiswa Gesit Aman) is an online motorcycle taxi application designed specifically for students, providing a safe, affordable, and efficient transportation solution within campus environments. In this project, my contributions included optimizing trip management algorithms for faster and more accurate ride matching, implementing secure and seamless financial transaction systems, and enhancing real-time database streaming for efficient data synchronization. Additionally, I integrated real-time communication features for smooth interaction between riders and passengers while collaborating with cross-functional teams to ensure high performance, scalability, and an optimal user experience.",
+      "role": "Mobile Developer",
+      "android_url_download": "https://play.google.com/store/apps/details?id=com.coolva.omaga&hl=id",
       "download_count": "10+ Download",
-      "image_url": "assets/images/scooter.png"
+      "image_url": "assets/images/omaga.png",
+      "target_platform": "Android"
+    },
+    {
+      "id": 3,
+      "name": "UnilaHub - E-Commerce Universitas Lampung",
+      "abreviation": "UnilaHub",
+      "description": "UnilaHub is an e-commerce platform developed for Universitas Lampung, aimed at marketing research-based products from the university. In this project, I played a key role in developing a seamless payment system by integrating the Midtrans payment gateway, ensuring secure and efficient transactions. Additionally, I implemented a real-time product shipment tracking feature to enhance transparency and user experience. My contributions focused on optimizing transaction flows, improving reliability, and ensuring a smooth purchasing process for both buyers and sellers within the platform.",
+      "role": "Mobile Developer",
+      "download_count": "-",
+      "image_url": "assets/images/unilahub.png",
+      "target_platform": "Android"
+    },
+    {
+      "id": 4,
+      "name": "OneData Unila - Portal Akademik Universitas Lampung",
+      "abreviation": "OneData Unila",
+      "description": "OneData Unila is an academic portal application developed for Universitas Lampung, designed to provide seamless access to academic data for students and faculty. Built using Flutter, the application integrates with Universitas Lampung's official API to fetch and display real-time academic information, ensuring accuracy and reliability. My role in this project involved developing the front-end and optimizing API data handling to deliver a smooth and efficient user experience.",
+      "role": "Mobile Developer",
+      "download_count": "-",
+      "image_url": "assets/images/onedata.png",
+      "target_platform": "Android"
     }
   ]
 }

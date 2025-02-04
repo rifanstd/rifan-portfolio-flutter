@@ -112,7 +112,7 @@ class Projects extends GetView<HomeController> {
             ),
             UIUtils.verticalSpace(16),
             Text(
-              "${project.androidUrlDownload != null ? "Android" : ""} | ${project.iosUrlDownload != null ? "iOS" : ""}",
+              project.targetPlatform ?? "",
               style: AppText.bold12.copyWith(fontWeight: FontWeight.normal),
               textAlign: TextAlign.center,
               maxLines: 1,
@@ -202,10 +202,6 @@ class Projects extends GetView<HomeController> {
                                   SvgPicture.asset(
                                     AppIcons.download,
                                     width: 16,
-                                    // colorFilter: const ColorFilter.mode(
-                                    //   Colors.grey,
-                                    //   BlendMode.srcIn,
-                                    // ),
                                   ),
                                   UIUtils.horizontalSpace(4),
                                   Text(
@@ -222,14 +218,10 @@ class Projects extends GetView<HomeController> {
                                   SvgPicture.asset(
                                     AppIcons.platform,
                                     width: 16,
-                                    // colorFilter: const ColorFilter.mode(
-                                    //   Colors.grey,
-                                    //   BlendMode.srcIn,
-                                    // ),
                                   ),
                                   UIUtils.horizontalSpace(4),
                                   Text(
-                                    "${project.androidUrlDownload != null ? "Android" : ""} | ${project.iosUrlDownload != null ? "iOS" : ""}",
+                                    project.targetPlatform ?? "",
                                     style: AppText.bold12,
                                   ),
                                 ],
@@ -239,58 +231,62 @@ class Projects extends GetView<HomeController> {
                         ),
                       ],
                     ),
-                    UIUtils.verticalSpace(16),
-                    Wrap(
-                      alignment: WrapAlignment.start,
-                      spacing: 8,
-                      runSpacing: 8,
-                      children: [
-                        TextButton.icon(
-                          onPressed: () async => await controller.downloadApps(
-                            project.androidUrlDownload ?? "",
-                          ),
-                          icon: SvgPicture.asset(
-                            AppIcons.playstore,
-                            width: 20,
-                          ),
-                          label: const Text(
-                            "Get on Playstore",
-                            style: TextStyle(
-                              color: AppColor.white,
-                            ),
-                          ),
-                          style: AppButton.smallFilledPrimary(context).copyWith(
-                            shape: WidgetStatePropertyAll(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(4),
+                    if (project.iosUrlDownload != null || project.androidUrlDownload != null) ...[
+                      UIUtils.verticalSpace(16),
+                      Wrap(
+                        alignment: WrapAlignment.start,
+                        spacing: 8,
+                        runSpacing: 8,
+                        children: [
+                          if (project.androidUrlDownload != null)
+                            TextButton.icon(
+                              onPressed: () async => await controller.downloadApps(
+                                project.androidUrlDownload ?? "",
+                              ),
+                              icon: SvgPicture.asset(
+                                AppIcons.playstore,
+                                width: 20,
+                              ),
+                              label: const Text(
+                                "Get on Playstore",
+                                style: TextStyle(
+                                  color: AppColor.white,
+                                ),
+                              ),
+                              style: AppButton.smallFilledPrimary(context).copyWith(
+                                shape: WidgetStatePropertyAll(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(4),
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                        TextButton.icon(
-                          onPressed: () async => await controller.downloadApps(
-                            project.iosUrlDownload ?? "",
-                          ),
-                          icon: SvgPicture.asset(
-                            AppIcons.appstore,
-                            width: 20,
-                          ),
-                          label: const Text(
-                            "Get on Appstore",
-                            style: TextStyle(
-                              color: AppColor.white,
-                            ),
-                          ),
-                          style: AppButton.smallFilledPrimary(context).copyWith(
-                            shape: WidgetStatePropertyAll(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(4),
+                          if (project.iosUrlDownload != null)
+                            TextButton.icon(
+                              onPressed: () async => await controller.downloadApps(
+                                project.iosUrlDownload ?? "",
+                              ),
+                              icon: SvgPicture.asset(
+                                AppIcons.appstore,
+                                width: 20,
+                              ),
+                              label: const Text(
+                                "Get on Appstore",
+                                style: TextStyle(
+                                  color: AppColor.white,
+                                ),
+                              ),
+                              style: AppButton.smallFilledPrimary(context).copyWith(
+                                shape: WidgetStatePropertyAll(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(4),
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                      ],
-                    ),
+                        ],
+                      ),
+                    ],
                     UIUtils.verticalSpace(16),
                     Text("Description", style: AppText.bold12),
                     UIUtils.verticalSpace(8),

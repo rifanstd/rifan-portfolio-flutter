@@ -35,7 +35,7 @@
     },
     {
       "id": 4,
-      "title": "Mobile Application Developer",
+      "title": "Mobile Developer",
       "institution": "Sewanue",
       "location": "Indonesia",
       "start_date": "2023",
@@ -46,7 +46,7 @@
     },
     {
       "id": 5,
-      "title": "Mobile Application Developer",
+      "title": "Mobile Developer",
       "institution": "Universitas Lampung",
       "location": "Indonesia",
       "start_date": "2024",
@@ -57,7 +57,7 @@
     },
     {
       "id": 6,
-      "title": "Mobile Application Developer",
+      "title": "Mobile Developer",
       "institution": "PT Coolva Teknologi Indonesia",
       "location": "Indonesia",
       "start_date": "2022",
@@ -68,14 +68,14 @@
     },
     {
       "id": 7,
-      "title": "Mobile Application Developer",
+      "title": "Mobile Developer",
       "institution": "PT Bank Negara Indonesia (Persero) Tbk",
       "location": "Indonesia",
       "start_date": "2024",
       "end_date": "Present",
       "category": "EXPERIENCE",
       "image_url": "",
-      "description": "I work as a Mobile Application Developer, developing applications for users in Indonesia and abroad. In this job, I am involved in various stages of development, from planning, design, implementation, to application maintenance. My focus is on creating applications that are functional, easy to use, and fit the needs of users in various markets."
+      "description": "I work as a Mobile Developer, developing applications for users in Indonesia and abroad. In this job, I am involved in various stages of development, from planning, design, implementation, to application maintenance. My focus is on creating applications that are functional, easy to use, and fit the needs of users in various markets."
     }
   ]
 }

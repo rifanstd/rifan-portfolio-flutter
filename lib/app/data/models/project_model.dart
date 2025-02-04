@@ -8,6 +8,7 @@ class ProjectModel {
   final String? iosUrlDownload;
   final String? downloadCount;
   final String? imageUrl;
+  final String? targetPlatform;
 
   ProjectModel({
     required this.id,
@@ -19,6 +20,7 @@ class ProjectModel {
     required this.iosUrlDownload,
     required this.downloadCount,
     required this.imageUrl,
+    required this.targetPlatform,
   });
 
   factory ProjectModel.fromJson(Map<String, dynamic> json) {
@@ -32,6 +34,7 @@ class ProjectModel {
       iosUrlDownload: json['ios_url_download'],
       downloadCount: json['download_count'],
       imageUrl: json['image_url'],
+      targetPlatform: json['target_platform'],
     );
   }
 }

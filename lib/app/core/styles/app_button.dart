@@ -9,7 +9,7 @@ class AppButton {
         backgroundColor: AppColor.primary,
         padding: EdgeInsets.symmetric(vertical: ScreenUtils.isLargeScreen(context) ? 24 : 16, horizontal: 30),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(4),
         ),
       );
 
@@ -17,7 +17,7 @@ class AppButton {
         backgroundColor: AppColor.primary,
         padding: EdgeInsets.symmetric(vertical: ScreenUtils.isLargeScreen(context) ? 16 : 18, horizontal: 18),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(4),
         ),
       );
 }

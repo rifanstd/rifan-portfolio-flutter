@@ -20,12 +20,9 @@ class ContactMe extends GetView<HomeController> {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       children: [
-        ...UIUtils.createSectionHeader(
-            title: "Contact Me", subtitle: "Get in touch with me!"),
+        ...UIUtils.createSectionHeader(title: "Contact Me", subtitle: "Get in touch with me!"),
         UIUtils.verticalSpace(40),
-        ScreenUtils.isLargeScreen(context)
-            ? _largeScreen()
-            : _smallScreenWidgets(context),
+        ScreenUtils.isLargeScreen(context) ? _largeScreen() : _smallScreenWidgets(context),
       ],
     );
   }
@@ -207,28 +204,27 @@ class ContactMe extends GetView<HomeController> {
           label: Text(label),
           alignLabelWithHint: true,
           floatingLabelBehavior: FloatingLabelBehavior.always,
-          labelStyle:
-              const TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
+          labelStyle: const TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
           border: OutlineInputBorder(
             borderSide: const BorderSide(
               color: Colors.grey,
               width: 1.5,
             ),
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(4),
           ),
           enabledBorder: OutlineInputBorder(
             borderSide: const BorderSide(
               color: Colors.grey,
               width: 1.5,
             ),
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(4),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: const BorderSide(
               color: Colors.grey,
               width: 1.5,
             ),
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(4),
           ),
         ),
       ),
@@ -285,8 +281,7 @@ class ContactMe extends GetView<HomeController> {
                 SvgPicture.asset(
                   AppIcons.arrowRight,
                   width: 12,
-                  colorFilter:
-                      const ColorFilter.mode(Colors.grey, BlendMode.srcIn),
+                  colorFilter: const ColorFilter.mode(Colors.grey, BlendMode.srcIn),
                 ),
               ],
             ),
@@ -307,8 +302,7 @@ class ContactMe extends GetView<HomeController> {
       ),
       icon: SvgPicture.asset(
         AppIcons.send,
-        colorFilter:
-            const ColorFilter.mode(AppColor.background, BlendMode.srcIn),
+        colorFilter: const ColorFilter.mode(AppColor.background, BlendMode.srcIn),
         width: 24,
       ),
       iconAlignment: IconAlignment.end,
