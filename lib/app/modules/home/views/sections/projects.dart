@@ -1,14 +1,14 @@
+import 'package:flutter/material.dart' hide CarouselController;
 import 'package:flutter/material.dart';
+import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:portfolio/app/core/styles/app_button.dart';
 import 'package:portfolio/app/core/styles/app_color.dart';
 import 'package:portfolio/app/core/styles/app_text.dart';
 import 'package:portfolio/app/core/utils/screen_utils.dart';
 import 'package:portfolio/app/core/utils/ui_utils.dart';
 import 'package:portfolio/app/core/values/app_icons.dart';
-import 'package:portfolio/app/core/values/app_images.dart';
 import 'package:portfolio/app/data/models/project_model.dart';
 import 'package:portfolio/app/modules/home/controllers/home_controller.dart';
 
@@ -17,27 +17,48 @@ class Projects extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-      ...UIUtils.createSectionHeader(
-        title: "Projects",
-        subtitle: "What I have done so far.",
-      ),
-      UIUtils.verticalSpace(40),
-      Wrap(
-        alignment: WrapAlignment.center,
-        spacing: 24,
-        runSpacing: 24,
-        children: [
-          ...List.generate(
-            controller.projects.length,
-            (index) => _buildCardProjectItem(
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        ...UIUtils.createSectionHeader(
+          title: "Projects",
+          subtitle: "What I have done so far.",
+        ),
+        UIUtils.verticalSpace(40),
+        if (ScreenUtils.isLargeScreen(context))
+          Wrap(
+            alignment: WrapAlignment.center,
+            spacing: 24,
+            runSpacing: 24,
+            children: [
+              ...List.generate(
+                controller.projects.length,
+                (index) => _buildCardProjectItem(
+                  context: context,
+                  project: controller.projects.elementAt(index),
+                ),
+              ),
+            ],
+          )
+        else
+          ExpandableCarousel.builder(
+            itemCount: controller.projects.length,
+            itemBuilder: (context, index, realIndex) => _buildCardProjectItem(
               context: context,
               project: controller.projects.elementAt(index),
             ),
+            options: ExpandableCarouselOptions(
+              enableInfiniteScroll: true,
+              autoPlay: true,
+              showIndicator: false,
+              floatingIndicator: false,
+              enlargeCenterPage: true,
+              clipBehavior: Clip.none,
+              autoPlayAnimationDuration: const Duration(seconds: 2),
+            ),
           ),
-        ],
-      ),
-    ]);
+      ],
+    );
   }
 
   Container _buildCardProjectItem({
@@ -70,8 +91,8 @@ class Projects extends GetView<HomeController> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SvgPicture.asset(
-              AppIcons.sipuma,
+            Image.asset(
+              project.imageUrl ?? "",
               width: 70,
             ),
             UIUtils.verticalSpace(16),
@@ -121,12 +142,14 @@ class Projects extends GetView<HomeController> {
     );
   }
 
-  void _showDetailProject({required BuildContext context, required ProjectModel project}) {
+  void _showDetailProject(
+      {required BuildContext context, required ProjectModel project}) {
     showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           backgroundColor: AppColor.background,
           surfaceTintColor: AppColor.background,
           actions: [
@@ -138,72 +161,145 @@ class Projects extends GetView<HomeController> {
               ),
             ),
           ],
+          contentPadding:
+              const EdgeInsets.only(bottom: 0, top: 16, left: 16, right: 16),
           content: Container(
             constraints: const BoxConstraints(
               maxWidth: 500,
             ),
             child: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset(
-                        project.imageUrl ?? AppIcons.logo,
-                        width: 50,
-                      ),
-                      UIUtils.horizontalSpace(16),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            project.abreviation ?? "",
-                            style: AppText.bold16,
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          project.imageUrl ?? AppIcons.logo,
+                          width: 50,
+                        ),
+                        UIUtils.horizontalSpace(16),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                project.abreviation ?? "",
+                                style: AppText.bold16,
+                              ),
+                              Text(
+                                project.name ?? "",
+                                style: AppText.bold12,
+                              ),
+                              UIUtils.verticalSpace(8),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  SvgPicture.asset(
+                                    AppIcons.download,
+                                    width: 16,
+                                    colorFilter: const ColorFilter.mode(
+                                      Colors.grey,
+                                      BlendMode.srcIn,
+                                    ),
+                                  ),
+                                  UIUtils.horizontalSpace(4),
+                                  Text(
+                                    project.downloadCount ?? "",
+                                    style: AppText.regular12Grey,
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  SvgPicture.asset(
+                                    AppIcons.platform,
+                                    width: 16,
+                                    colorFilter: const ColorFilter.mode(
+                                      Colors.grey,
+                                      BlendMode.srcIn,
+                                    ),
+                                  ),
+                                  UIUtils.horizontalSpace(4),
+                                  Text(
+                                    "${project.androidUrlDownload != null ? "Android" : ""} | ${project.iosUrlDownload != null ? "iOS" : ""}",
+                                    style: AppText.regular12Grey,
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
-                          Text(
-                            project.name ?? "",
-                            style: AppText.bold12,
+                        ),
+                      ],
+                    ),
+                    UIUtils.verticalSpace(16),
+                    Wrap(
+                      alignment: WrapAlignment.start,
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: [
+                        TextButton.icon(
+                          onPressed: () async => await controller.downloadApps(
+                            project.androidUrlDownload ?? "",
                           ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  UIUtils.verticalSpace(8),
-                  // Text(
-                  //   "${project.institution}, ${project.location}",
-                  //   style: AppText.bold12Grey,
-                  // ),
-                  UIUtils.verticalSpace(8),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Icon(
-                        Icons.calendar_month_rounded,
-                        size: 16,
-                        color: Colors.grey,
-                      ),
-                      UIUtils.horizontalSpace(4),
-                      // Text(
-                      //   "${project.startDate} - ${project.endDate}",
-                      //   style: AppText.bold12Grey,
-                      // ),
-                    ],
-                  ),
-                  UIUtils.verticalSpace(16),
-                  Text(
-                    "Description",
-                    style: AppText.bold12,
-                  ),
-                  UIUtils.verticalSpace(8),
-                  // Text(project.description.isNotEmpty ? project.description : "-"),
-                ],
+                          icon: SvgPicture.asset(
+                            AppIcons.playstore,
+                            width: 20,
+                          ),
+                          label: const Text(
+                            "Get on Playstore",
+                            style: TextStyle(
+                              color: AppColor.white,
+                            ),
+                          ),
+                          style: AppButton.smallFilledPrimary(context).copyWith(
+                            shape: WidgetStatePropertyAll(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                            ),
+                          ),
+                        ),
+                        TextButton.icon(
+                          onPressed: () async => await controller.downloadApps(
+                            project.iosUrlDownload ?? "",
+                          ),
+                          icon: SvgPicture.asset(
+                            AppIcons.appstore,
+                            width: 20,
+                          ),
+                          label: const Text(
+                            "Get on Appstore",
+                            style: TextStyle(
+                              color: AppColor.white,
+                            ),
+                          ),
+                          style: AppButton.smallFilledPrimary(context).copyWith(
+                            shape: WidgetStatePropertyAll(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    UIUtils.verticalSpace(16),
+                    Text("Description", style: AppText.bold12),
+                    UIUtils.verticalSpace(8),
+                    Text(project.description ?? "No description"),
+                  ],
+                ),
               ),
             ),
           ),
@@ -212,3 +308,114 @@ class Projects extends GetView<HomeController> {
     );
   }
 }
+
+final expandableSliders = [
+  Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 4.0),
+    child: ClipRRect(
+      borderRadius: const BorderRadius.all(Radius.circular(4.0)),
+      child: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: Colors.blue,
+          border: Border.all(color: Colors.black),
+        ),
+        height: 200,
+        child: const Center(
+          child: Text(
+            "Slide 1",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 24.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      ),
+    ),
+  ),
+  Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 4.0),
+    child: ClipRRect(
+      borderRadius: const BorderRadius.all(Radius.circular(4.0)),
+      child: Container(
+        color: Colors.red,
+        width: double.infinity,
+        height: 300,
+        child: const Center(
+          child: Text(
+            "Slide 2",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 24.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      ),
+    ),
+  ),
+  Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 4.0),
+    child: ClipRRect(
+      borderRadius: const BorderRadius.all(Radius.circular(4.0)),
+      child: Container(
+        color: Colors.yellow,
+        width: double.infinity,
+        height: 250,
+        child: const Center(
+          child: Text(
+            "Slide 3",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 24.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      ),
+    ),
+  ),
+  Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 4.0),
+    child: ClipRRect(
+      borderRadius: const BorderRadius.all(Radius.circular(4.0)),
+      child: Container(
+        color: Colors.pink,
+        width: double.infinity,
+        height: 400,
+        child: const Center(
+          child: Text(
+            "Slide 4",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 24.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      ),
+    ),
+  ),
+  Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 4.0),
+    child: ClipRRect(
+      borderRadius: const BorderRadius.all(Radius.circular(4.0)),
+      child: Container(
+        color: Colors.green,
+        width: double.infinity,
+        height: 350,
+        child: const Center(
+          child: Text(
+            "Slide 5",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 24.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      ),
+    ),
+  )
+];

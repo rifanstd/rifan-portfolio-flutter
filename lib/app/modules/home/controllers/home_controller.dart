@@ -174,6 +174,16 @@ class HomeController extends GetxController with StateMixin {
         .join('&');
   }
 
+  Future<void> downloadApps(String url) async {
+    Get.log(url);
+    try {
+      await launchUrl(Uri.parse(url));
+    } catch (e) {
+      Get.log(e.toString());
+      throw Exception(e);
+    }
+  }
+
   void setSelectedJourneyTab(JourneyEnum tab) {
     if (selectedJourneyTab.value != tab) {
       selectedJourneyTab.value = tab;

@@ -32,4 +32,10 @@ class AppIcons {
   static const String sendEmail = "assets/svg/send_email.svg";
   static const String whatsapp = "assets/svg/whatsapp.svg";
   static const String sipuma = "assets/svg/sipuma.svg";
+  static const String scooter = "assets/svg/scooter.svg";
+  static const String phone = "assets/svg/phone.svg";
+  static const String download = "assets/svg/download.svg";
+  static const String platform = "assets/svg/platform.svg";
+  static const String playstore = "assets/svg/playstore.svg";
+  static const String appstore = "assets/svg/appstore.svg";
 }

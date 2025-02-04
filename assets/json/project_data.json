@@ -4,12 +4,22 @@
       "id": 1,
       "name": "Sistem Informasi Pemilihan Umum Mahasiswa UIN SMH Banten",
       "abreviation": "SIPUMA",
-      "description": "",
+      "description": "I developed SIPUMA, a student election application for UIN SMH Banten, as a Project Manager and Mobile Developer. Built with Flutter and Firebase, SIPUMA ensures secure, transparent, and efficient elections through data encryption, a one-device-one-vote system, integrated authentication, and real-time vote counting. Leading a team of six, I managed development, designed the system architecture, and conducted large-scale testing with 1,000+ users. As a result, voter participation increased by 40%, vote counting time was reduced from days to minutes, and SIPUMA was officially adopted as the university's election platform starting in 2025.",
       "role": "Project Manager",
-      "android_url_download": "",
-      "ios_url_download": "",
+      "android_url_download": "https://play.google.com/store/apps/details?id=id.ac.uinbanten.pum",
+      "ios_url_download": "https://apps.apple.com/id/app/sipuma-uin-smh-banten/id6739735650",
       "download_count": "5k+ Download",
-      "image_url": "assets/svg/sipuma.svg"
+      "image_url": "assets/images/sipuma.png"
+    },
+    {
+      "id": 2,
+      "name": "Ojek Mahasiswa Gesit Aman",
+      "abreviation": "OMAGA",
+      "description": "I developed SIPUMA, a student election application for UIN SMH Banten, as a Project Manager and Mobile Developer. Built with Flutter and Firebase, SIPUMA ensures secure, transparent, and efficient elections through data encryption, a one-device-one-vote system, integrated authentication, and real-time vote counting. Leading a team of six, I managed development, designed the system architecture, and conducted large-scale testing with 1,000+ users. As a result, voter participation increased by 40%, vote counting time was reduced from days to minutes, and SIPUMA was officially adopted as the university's election platform starting in 2025.",
+      "role": "Project Manager",
+      "android_url_download": "https://play.google.com/store/apps/details?id=id.ac.uinbanten.pum",
+      "download_count": "10+ Download",
+      "image_url": "assets/images/scooter.png"
     }
   ]
 }
