@@ -142,14 +142,12 @@ class Projects extends GetView<HomeController> {
     );
   }
 
-  void _showDetailProject(
-      {required BuildContext context, required ProjectModel project}) {
+  void _showDetailProject({required BuildContext context, required ProjectModel project}) {
     showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           backgroundColor: AppColor.background,
           surfaceTintColor: AppColor.background,
           actions: [
@@ -161,8 +159,7 @@ class Projects extends GetView<HomeController> {
               ),
             ),
           ],
-          contentPadding:
-              const EdgeInsets.only(bottom: 0, top: 16, left: 16, right: 16),
+          contentPadding: const EdgeInsets.only(bottom: 0, top: 16, left: 16, right: 16),
           content: Container(
             constraints: const BoxConstraints(
               maxWidth: 500,
@@ -179,8 +176,8 @@ class Projects extends GetView<HomeController> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        SvgPicture.asset(
-                          project.imageUrl ?? AppIcons.logo,
+                        Image.asset(
+                          project.imageUrl ?? "",
                           width: 50,
                         ),
                         UIUtils.horizontalSpace(16),
@@ -194,7 +191,7 @@ class Projects extends GetView<HomeController> {
                               ),
                               Text(
                                 project.name ?? "",
-                                style: AppText.bold12,
+                                style: AppText.bold14,
                               ),
                               UIUtils.verticalSpace(8),
                               Row(
@@ -205,15 +202,15 @@ class Projects extends GetView<HomeController> {
                                   SvgPicture.asset(
                                     AppIcons.download,
                                     width: 16,
-                                    colorFilter: const ColorFilter.mode(
-                                      Colors.grey,
-                                      BlendMode.srcIn,
-                                    ),
+                                    // colorFilter: const ColorFilter.mode(
+                                    //   Colors.grey,
+                                    //   BlendMode.srcIn,
+                                    // ),
                                   ),
                                   UIUtils.horizontalSpace(4),
                                   Text(
                                     project.downloadCount ?? "",
-                                    style: AppText.regular12Grey,
+                                    style: AppText.bold12,
                                   ),
                                 ],
                               ),
@@ -225,15 +222,15 @@ class Projects extends GetView<HomeController> {
                                   SvgPicture.asset(
                                     AppIcons.platform,
                                     width: 16,
-                                    colorFilter: const ColorFilter.mode(
-                                      Colors.grey,
-                                      BlendMode.srcIn,
-                                    ),
+                                    // colorFilter: const ColorFilter.mode(
+                                    //   Colors.grey,
+                                    //   BlendMode.srcIn,
+                                    // ),
                                   ),
                                   UIUtils.horizontalSpace(4),
                                   Text(
                                     "${project.androidUrlDownload != null ? "Android" : ""} | ${project.iosUrlDownload != null ? "iOS" : ""}",
-                                    style: AppText.regular12Grey,
+                                    style: AppText.bold12,
                                   ),
                                 ],
                               ),
@@ -308,114 +305,3 @@ class Projects extends GetView<HomeController> {
     );
   }
 }
-
-final expandableSliders = [
-  Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 4.0),
-    child: ClipRRect(
-      borderRadius: const BorderRadius.all(Radius.circular(4.0)),
-      child: Container(
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: Colors.blue,
-          border: Border.all(color: Colors.black),
-        ),
-        height: 200,
-        child: const Center(
-          child: Text(
-            "Slide 1",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 24.0,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-      ),
-    ),
-  ),
-  Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 4.0),
-    child: ClipRRect(
-      borderRadius: const BorderRadius.all(Radius.circular(4.0)),
-      child: Container(
-        color: Colors.red,
-        width: double.infinity,
-        height: 300,
-        child: const Center(
-          child: Text(
-            "Slide 2",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 24.0,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-      ),
-    ),
-  ),
-  Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 4.0),
-    child: ClipRRect(
-      borderRadius: const BorderRadius.all(Radius.circular(4.0)),
-      child: Container(
-        color: Colors.yellow,
-        width: double.infinity,
-        height: 250,
-        child: const Center(
-          child: Text(
-            "Slide 3",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 24.0,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-      ),
-    ),
-  ),
-  Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 4.0),
-    child: ClipRRect(
-      borderRadius: const BorderRadius.all(Radius.circular(4.0)),
-      child: Container(
-        color: Colors.pink,
-        width: double.infinity,
-        height: 400,
-        child: const Center(
-          child: Text(
-            "Slide 4",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 24.0,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-      ),
-    ),
-  ),
-  Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 4.0),
-    child: ClipRRect(
-      borderRadius: const BorderRadius.all(Radius.circular(4.0)),
-      child: Container(
-        color: Colors.green,
-        width: double.infinity,
-        height: 350,
-        child: const Center(
-          child: Text(
-            "Slide 5",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 24.0,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-      ),
-    ),
-  )
-];

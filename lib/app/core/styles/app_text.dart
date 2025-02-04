@@ -89,6 +89,12 @@ class AppText {
     );
   }
 
+  static TextStyle get regular12 {
+    return const TextStyle(
+      fontSize: 12,
+    );
+  }
+
   static TextStyle get regular12Grey {
     return const TextStyle(
       color: Colors.grey,
