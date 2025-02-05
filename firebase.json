@@ -1,12 +1,1 @@
-{
-  "hosting": {
-    "public": "build/web",
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ],
-    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
-  }
-}
+{"hosting":{"public":"build/web","rewrites":[{"source":"**","destination":"/index.html"}],"ignore":["firebase.json","**/.*","**/node_modules/**"]},"flutter":{"platforms":{"dart":{"lib/firebase_options.dart":{"projectId":"rifansetiadi-portfolio","configurations":{"web":"1:754808943363:web:320d4c498299afc4f46f36"}}}}}}

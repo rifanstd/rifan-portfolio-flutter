@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:portfolio/app/data/repositories/service_repository.dart';
+import 'package:portfolio/app/data/repositories/local_repository.dart';
 
 import '../controllers/home_controller.dart';
 

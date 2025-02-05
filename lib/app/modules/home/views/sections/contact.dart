@@ -20,73 +20,97 @@ class ContactMe extends GetView<HomeController> {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       children: [
-        ...UIUtils.createSectionHeader(title: "Contact Me", subtitle: "Get in touch with me!"),
+        ...UIUtils.createSectionHeader(
+            title: "Contact Me", subtitle: "Get in touch with me!"),
         UIUtils.verticalSpace(40),
-        ScreenUtils.isLargeScreen(context) ? _largeScreen() : _smallScreenWidgets(context),
+        ScreenUtils.isLargeScreen(context)
+            ? _largeScreen()
+            : _smallScreenWidgets(context),
       ],
     );
   }
 
   Widget _smallScreenWidgets(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          "Talk to me",
-          style: AppText.bold18,
-        ),
-        UIUtils.verticalSpace(24),
-        _buildContactOptionCard(
-          boxWidth: double.infinity,
-          imagePath: AppIcons.sendEmail,
-          title: "Email",
-          value: "rfan2442@gmail.com",
-          onClick: () async {
-            await controller.openSocialMedia(UrlEnum.email);
-          },
-        ),
-        UIUtils.verticalSpace(16),
-        _buildContactOptionCard(
-          boxWidth: double.infinity,
-          imagePath: AppIcons.whatsapp,
-          title: "Whatsapp",
-          value: "+62 896-3009-8684",
-          onClick: () async {
-            await controller.openSocialMedia(UrlEnum.whatsapp);
-          },
-        ),
-        UIUtils.verticalSpace(24),
-        Text(
-          "Write me your project",
-          style: AppText.bold18,
-        ),
-        UIUtils.verticalSpace(24),
-        _buildFormField(
-          hint: "Insert your name",
-          label: "Name",
-          controller: TextEditingController(),
-          boxWidth: double.infinity,
-        ),
-        UIUtils.verticalSpace(32),
-        _buildFormField(
-          hint: "Insert your email",
-          label: "Email",
-          controller: TextEditingController(),
-          boxWidth: double.infinity,
-        ),
-        UIUtils.verticalSpace(32),
-        _buildFormField(
-          hint: "Write your project",
-          label: "Project",
-          controller: TextEditingController(),
-          boxWidth: double.infinity,
-          maxLines: 5,
-        ),
-        UIUtils.verticalSpace(16),
-        SizedBox(
-          width: double.infinity,
-          child: _buildSendMsgBtn(context),
-        ),
-      ],
+    return Form(
+      key: controller.sendEmailKey,
+      child: Column(
+        children: [
+          Text(
+            "Talk to me",
+            style: AppText.bold18,
+          ),
+          UIUtils.verticalSpace(24),
+          _buildContactOptionCard(
+            boxWidth: double.infinity,
+            imagePath: AppIcons.sendEmail,
+            title: "Email",
+            value: "rfan2442@gmail.com",
+            onClick: () async {
+              await controller.openSocialMedia(UrlEnum.email);
+            },
+          ),
+          UIUtils.verticalSpace(16),
+          _buildContactOptionCard(
+            boxWidth: double.infinity,
+            imagePath: AppIcons.whatsapp,
+            title: "Whatsapp",
+            value: "+62 896-3009-8684",
+            onClick: () async {
+              await controller.openSocialMedia(UrlEnum.whatsapp);
+            },
+          ),
+          UIUtils.verticalSpace(24),
+          Text(
+            "Write me your project",
+            style: AppText.bold18,
+          ),
+          UIUtils.verticalSpace(24),
+          _buildFormField(
+            hint: "Insert your name",
+            label: "Name",
+            textController: controller.nameController,
+            boxWidth: double.infinity,
+          ),
+          UIUtils.verticalSpace(32),
+          _buildFormField(
+            hint: "Insert your email",
+            label: "Email",
+            textController: controller.emailController,
+            boxWidth: double.infinity,
+          ),
+          UIUtils.verticalSpace(32),
+          _buildFormField(
+            hint: "Write your project",
+            label: "Project",
+            textController: controller.messageController,
+            boxWidth: double.infinity,
+            maxLines: 5,
+          ),
+          UIUtils.verticalSpace(16),
+          if (controller.isFailedCauseEmpty.isTrue) ...[
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(4),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(4),
+                color: Colors.red,
+              ),
+              child: const Center(
+                child: Text(
+                  "Lengkapi dulu data dan pesanmu yaa :)",
+                  style: TextStyle(color: AppColor.white),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+            UIUtils.verticalSpace(16),
+          ],
+          SizedBox(
+            width: double.infinity,
+            child: _buildSendMsgBtn(context),
+          ),
+        ],
+      ),
     );
   }
 
@@ -136,50 +160,73 @@ class ContactMe extends GetView<HomeController> {
         ),
         UIUtils.horizontalSpace(64),
         Expanded(
-          child: LayoutBuilder(
-            builder: (context, constraints) {
-              double boxWidth = constraints.maxWidth * 0.7;
-              return Align(
-                alignment: Alignment.topLeft,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Write me your project",
-                      style: AppText.bold18,
+          child: Form(
+            key: controller.sendEmailKey,
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                double boxWidth = constraints.maxWidth * 0.7;
+                return Obx(
+                  () => Align(
+                    alignment: Alignment.topLeft,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Write me your project",
+                          style: AppText.bold18,
+                        ),
+                        UIUtils.verticalSpace(24),
+                        _buildFormField(
+                          hint: "Insert your name",
+                          label: "Name",
+                          textController: controller.nameController,
+                          boxWidth: boxWidth,
+                        ),
+                        UIUtils.verticalSpace(32),
+                        _buildFormField(
+                          hint: "Insert your email",
+                          label: "Email",
+                          textController: controller.emailController,
+                          boxWidth: boxWidth,
+                        ),
+                        UIUtils.verticalSpace(32),
+                        _buildFormField(
+                          hint: "Write your project",
+                          label: "Project",
+                          textController: controller.messageController,
+                          boxWidth: boxWidth,
+                          maxLines: 5,
+                        ),
+                        UIUtils.verticalSpace(16),
+                        if (controller.isFailedCauseEmpty.isTrue) ...[
+                          Container(
+                            width: boxWidth,
+                            padding: const EdgeInsets.all(4),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4),
+                              color: Colors.red,
+                            ),
+                            child: const Center(
+                              child: Text(
+                                "Lengkapi dulu data dan pesanmu yaa :)",
+                                style: TextStyle(color: AppColor.white),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                          UIUtils.verticalSpace(16),
+                        ],
+                        SizedBox(
+                          width: boxWidth,
+                          child: _buildSendMsgBtn(context),
+                        ),
+                      ],
                     ),
-                    UIUtils.verticalSpace(24),
-                    _buildFormField(
-                      hint: "Insert your name",
-                      label: "Name",
-                      controller: TextEditingController(),
-                      boxWidth: boxWidth,
-                    ),
-                    UIUtils.verticalSpace(32),
-                    _buildFormField(
-                      hint: "Insert your email",
-                      label: "Email",
-                      controller: TextEditingController(),
-                      boxWidth: boxWidth,
-                    ),
-                    UIUtils.verticalSpace(32),
-                    _buildFormField(
-                      hint: "Write your project",
-                      label: "Project",
-                      controller: TextEditingController(),
-                      boxWidth: boxWidth,
-                      maxLines: 5,
-                    ),
-                    UIUtils.verticalSpace(16),
-                    SizedBox(
-                      width: boxWidth,
-                      child: _buildSendMsgBtn(context),
-                    ),
-                  ],
-                ),
-              );
-            },
+                  ),
+                );
+              },
+            ),
           ),
         ),
       ],
@@ -189,22 +236,24 @@ class ContactMe extends GetView<HomeController> {
   Widget _buildFormField({
     required String hint,
     required String label,
-    required TextEditingController controller,
+    required TextEditingController textController,
     required double boxWidth,
     int? maxLines,
   }) {
     return SizedBox(
       width: boxWidth,
       child: TextFormField(
-        controller: controller,
+        controller: textController,
         maxLines: maxLines ?? 1,
+        onChanged: (value) => controller.isFailedCauseEmpty.value = false,
         decoration: InputDecoration(
           hintText: hint,
           hintStyle: const TextStyle(color: Colors.grey),
           label: Text(label),
           alignLabelWithHint: true,
           floatingLabelBehavior: FloatingLabelBehavior.always,
-          labelStyle: const TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
+          labelStyle:
+              const TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
           border: OutlineInputBorder(
             borderSide: const BorderSide(
               color: Colors.grey,
@@ -281,7 +330,8 @@ class ContactMe extends GetView<HomeController> {
                 SvgPicture.asset(
                   AppIcons.arrowRight,
                   width: 12,
-                  colorFilter: const ColorFilter.mode(Colors.grey, BlendMode.srcIn),
+                  colorFilter:
+                      const ColorFilter.mode(Colors.grey, BlendMode.srcIn),
                 ),
               ],
             ),
@@ -293,16 +343,15 @@ class ContactMe extends GetView<HomeController> {
 
   Widget _buildSendMsgBtn(BuildContext context) {
     return FilledButton.icon(
-      // TODO send email
-      onPressed: () async => controller.openSocialMedia(UrlEnum.linkedin),
-
+      onPressed: () async => await controller.sendEmailMessage(),
       label: const Text(
         "Send Message",
         style: TextStyle(fontWeight: FontWeight.bold),
       ),
       icon: SvgPicture.asset(
         AppIcons.send,
-        colorFilter: const ColorFilter.mode(AppColor.background, BlendMode.srcIn),
+        colorFilter:
+            const ColorFilter.mode(AppColor.background, BlendMode.srcIn),
         width: 24,
       ),
       iconAlignment: IconAlignment.end,

@@ -3,12 +3,15 @@ import 'package:get/get.dart';
 import 'package:portfolio/app/core/constants/journey_constant.dart';
 import 'package:portfolio/app/core/enums/journey_enum.dart';
 import 'package:portfolio/app/core/enums/url_enum.dart';
+import 'package:portfolio/app/core/utils/string_utils.dart';
 import 'package:portfolio/app/core/values/urls.dart';
+import 'package:portfolio/app/data/models/contact_model.dart';
 import 'package:portfolio/app/data/models/journey_model.dart';
 import 'package:portfolio/app/data/models/project_model.dart';
 import 'package:portfolio/app/data/models/service_model.dart';
 import 'package:portfolio/app/data/models/skill_model.dart';
-import 'package:portfolio/app/data/repositories/service_repository.dart';
+import 'package:portfolio/app/data/repositories/contact_repository.dart';
+import 'package:portfolio/app/data/repositories/local_repository.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomeController extends GetxController with StateMixin {
@@ -32,6 +35,13 @@ class HomeController extends GetxController with StateMixin {
   RxList<JourneyModel> experiences = <JourneyModel>[].obs;
   RxList<SkillModel> skills = <SkillModel>[].obs;
   RxList<ProjectModel> projects = <ProjectModel>[].obs;
+
+  // send email message
+  TextEditingController emailController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController messageController = TextEditingController();
+  GlobalKey<FormState> sendEmailKey = GlobalKey<FormState>();
+  final isFailedCauseEmpty = false.obs;
 
   @override
   void onInit() async {
@@ -187,6 +197,52 @@ class HomeController extends GetxController with StateMixin {
   void setSelectedJourneyTab(JourneyEnum tab) {
     if (selectedJourneyTab.value != tab) {
       selectedJourneyTab.value = tab;
+    }
+  }
+
+  Future<void> sendEmailMessage() async {
+    if (nameController.text.isEmpty ||
+        emailController.text.isEmpty ||
+        messageController.text.isEmpty) {
+      isFailedCauseEmpty.value = true;
+
+      Get.log("Lengkapi dulu data dan pesanmu yaa :)");
+      return;
+    }
+
+    List<String> recipients = [
+      'rfan2442@gmail.com',
+      'rifansetiadi.pro@gmail.com'
+    ];
+
+    Map<String, dynamic> emailContent = {
+      "subject": "New Message from Your Portfolio Contact Form",
+      "html": """
+        <html>
+          <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+            <h2 style="color: #4CAF50;">📩 New Message Received</h2>
+            <p><strong>From:</strong> ${nameController.text} (${emailController.text})</p>
+            <p><strong>Message:</strong></p>
+            <blockquote style="border-left: 4px solid #4CAF50; padding-left: 10px; color: #555;">
+              ${messageController.text}
+            </blockquote>
+            <hr>
+            <p style="font-size: 14px; color: #777;">This message was sent via your portfolio contact form.</p>
+          </body>
+        </html>
+      """,
+    };
+
+    try {
+      await ContactRepository().add(
+        StringUtils.getRandomUID(),
+        ContactModel(
+          recipients: recipients,
+          emailContent: emailContent,
+        ).toJson(),
+      );
+    } catch (e) {
+      Get.log(e.toString());
     }
   }
 }
