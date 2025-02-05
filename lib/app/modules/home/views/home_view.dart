@@ -96,7 +96,6 @@ class HomeView extends GetView<HomeController> {
                   ),
 
                   // Harus paling bawah
-                  // TODO @Rifan : handle scroll and navigation to each section
                   if (ScreenUtils.isLargeScreen(context))
                     const Navbar()
                   else
@@ -122,7 +121,7 @@ class HomeView extends GetView<HomeController> {
                     duration: const Duration(seconds: 1),
                     child: LottieBuilder.asset(
                       AppLottie.rabbit,
-                      height: 100,
+                      width: 100,
                     ),
                   ),
                 ],

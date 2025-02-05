@@ -38,4 +38,7 @@ class AppIcons {
   static const String platform = "assets/svg/platform.svg";
   static const String playstore = "assets/svg/playstore.svg";
   static const String appstore = "assets/svg/appstore.svg";
+  static const String success = "assets/svg/success.svg";
+  static const String failed = "assets/svg/failed.svg";
+  static const String warning = "assets/svg/warning.svg";
 }

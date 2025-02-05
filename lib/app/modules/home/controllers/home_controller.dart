@@ -14,6 +14,8 @@ import 'package:portfolio/app/data/repositories/contact_repository.dart';
 import 'package:portfolio/app/data/repositories/local_repository.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+enum SendEmailState { initial, loading, success, failed, prevented }
+
 class HomeController extends GetxController with StateMixin {
   // Scroll controller
   final scrollController = ScrollController();
@@ -41,7 +43,7 @@ class HomeController extends GetxController with StateMixin {
   TextEditingController nameController = TextEditingController();
   TextEditingController messageController = TextEditingController();
   GlobalKey<FormState> sendEmailKey = GlobalKey<FormState>();
-  final isFailedCauseEmpty = false.obs;
+  final sendEmailState = SendEmailState.initial.obs;
 
   @override
   void onInit() async {
@@ -201,14 +203,18 @@ class HomeController extends GetxController with StateMixin {
   }
 
   Future<void> sendEmailMessage() async {
+    sendEmailState.value = SendEmailState.initial;
+
     if (nameController.text.isEmpty ||
         emailController.text.isEmpty ||
         messageController.text.isEmpty) {
-      isFailedCauseEmpty.value = true;
+      sendEmailState.value = SendEmailState.prevented;
 
       Get.log("Lengkapi dulu data dan pesanmu yaa :)");
       return;
     }
+
+    sendEmailState.value = SendEmailState.loading;
 
     List<String> recipients = [
       'rfan2442@gmail.com',
@@ -223,9 +229,9 @@ class HomeController extends GetxController with StateMixin {
             <h2 style="color: #4CAF50;">📩 New Message Received</h2>
             <p><strong>From:</strong> ${nameController.text} (${emailController.text})</p>
             <p><strong>Message:</strong></p>
-            <blockquote style="border-left: 4px solid #4CAF50; padding-left: 10px; color: #555;">
+            <p>
               ${messageController.text}
-            </blockquote>
+            </p>
             <hr>
             <p style="font-size: 14px; color: #777;">This message was sent via your portfolio contact form.</p>
           </body>
@@ -241,8 +247,13 @@ class HomeController extends GetxController with StateMixin {
           emailContent: emailContent,
         ).toJson(),
       );
+      nameController.text = "";
+      emailController.text = "";
+      messageController.text = "";
+      sendEmailState.value = SendEmailState.success;
     } catch (e) {
       Get.log(e.toString());
+      sendEmailState.value = SendEmailState.failed;
     }
   }
 }

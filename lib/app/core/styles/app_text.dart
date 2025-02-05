@@ -95,6 +95,13 @@ class AppText {
     );
   }
 
+  static TextStyle get regular12Bold {
+    return const TextStyle(
+      fontSize: 12,
+      fontWeight: FontWeight.bold,
+    );
+  }
+
   static TextStyle get regular12Grey {
     return const TextStyle(
       color: Colors.grey,

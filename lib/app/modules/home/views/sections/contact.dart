@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:portfolio/app/core/enums/url_enum.dart';
 import 'package:portfolio/app/core/styles/app_button.dart';
 import 'package:portfolio/app/core/styles/app_color.dart';
@@ -8,6 +9,7 @@ import 'package:portfolio/app/core/styles/app_text.dart';
 import 'package:portfolio/app/core/utils/screen_utils.dart';
 import 'package:portfolio/app/core/utils/ui_utils.dart';
 import 'package:portfolio/app/core/values/app_icons.dart';
+import 'package:portfolio/app/core/values/app_lottie.dart';
 import 'package:portfolio/app/modules/home/controllers/home_controller.dart';
 
 class ContactMe extends GetView<HomeController> {
@@ -87,22 +89,8 @@ class ContactMe extends GetView<HomeController> {
             maxLines: 5,
           ),
           UIUtils.verticalSpace(16),
-          if (controller.isFailedCauseEmpty.isTrue) ...[
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(4),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4),
-                color: Colors.red,
-              ),
-              child: const Center(
-                child: Text(
-                  "Lengkapi dulu data dan pesanmu yaa :)",
-                  style: TextStyle(color: AppColor.white),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
+          if (controller.sendEmailState.value != SendEmailState.initial) ...[
+            _buildSendEmailInfoBox(boxWidth: double.infinity),
             UIUtils.verticalSpace(16),
           ],
           SizedBox(
@@ -199,22 +187,9 @@ class ContactMe extends GetView<HomeController> {
                           maxLines: 5,
                         ),
                         UIUtils.verticalSpace(16),
-                        if (controller.isFailedCauseEmpty.isTrue) ...[
-                          Container(
-                            width: boxWidth,
-                            padding: const EdgeInsets.all(4),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4),
-                              color: Colors.red,
-                            ),
-                            child: const Center(
-                              child: Text(
-                                "Lengkapi dulu data dan pesanmu yaa :)",
-                                style: TextStyle(color: AppColor.white),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ),
+                        if (controller.sendEmailState.value !=
+                            SendEmailState.initial) ...[
+                          _buildSendEmailInfoBox(boxWidth: boxWidth),
                           UIUtils.verticalSpace(16),
                         ],
                         SizedBox(
@@ -245,7 +220,8 @@ class ContactMe extends GetView<HomeController> {
       child: TextFormField(
         controller: textController,
         maxLines: maxLines ?? 1,
-        onChanged: (value) => controller.isFailedCauseEmpty.value = false,
+        onChanged: (value) =>
+            controller.sendEmailState.value = SendEmailState.initial,
         decoration: InputDecoration(
           hintText: hint,
           hintStyle: const TextStyle(color: Colors.grey),
@@ -343,19 +319,78 @@ class ContactMe extends GetView<HomeController> {
 
   Widget _buildSendMsgBtn(BuildContext context) {
     return FilledButton.icon(
-      onPressed: () async => await controller.sendEmailMessage(),
-      label: const Text(
-        "Send Message",
-        style: TextStyle(fontWeight: FontWeight.bold),
-      ),
-      icon: SvgPicture.asset(
-        AppIcons.send,
-        colorFilter:
-            const ColorFilter.mode(AppColor.background, BlendMode.srcIn),
-        width: 24,
-      ),
+      onPressed: controller.sendEmailState.value == SendEmailState.loading
+          ? null
+          : () async => await controller.sendEmailMessage(),
+      label: controller.sendEmailState.value == SendEmailState.loading
+          ? const SizedBox(
+              width: 24,
+              height: 24,
+              child: CircularProgressIndicator(
+                color: AppColor.white,
+              ),
+            )
+          : const Text(
+              "Send Message",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+      icon: controller.sendEmailState.value == SendEmailState.loading
+          ? const SizedBox.shrink()
+          : SvgPicture.asset(
+              AppIcons.send,
+              colorFilter:
+                  const ColorFilter.mode(AppColor.background, BlendMode.srcIn),
+              width: 24,
+            ),
       iconAlignment: IconAlignment.end,
       style: AppButton.filledPrimary(context),
+    );
+  }
+
+  Widget _buildSendEmailInfoBox({required double boxWidth}) {
+    return Container(
+      width: boxWidth,
+      padding: const EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(4),
+        color: Colors.white,
+        border: Border.all(
+          color: AppColor.black.withOpacity(.2),
+          width: .4,
+        ),
+      ),
+      child: Row(
+        children: [
+          if (controller.sendEmailState.value == SendEmailState.loading)
+            LottieBuilder.asset(
+              AppLottie.rabbit,
+              width: 50,
+            )
+          else
+            SvgPicture.asset(
+              controller.sendEmailState.value == SendEmailState.prevented
+                  ? AppIcons.warning
+                  : controller.sendEmailState.value == SendEmailState.success
+                      ? AppIcons.success
+                      : AppIcons.failed,
+              width: 24,
+            ),
+          UIUtils.horizontalSpace(8),
+          Flexible(
+            child: Text(
+              controller.sendEmailState.value == SendEmailState.loading
+                  ? "Mengirim pesan..."
+                  : controller.sendEmailState.value == SendEmailState.prevented
+                      ? "Lengkapi dulu data dan pesanmu yaa :)"
+                      : controller.sendEmailState.value ==
+                              SendEmailState.success
+                          ? "Yeay, pesanmu berhasil terkirim!"
+                          : "Oops, terjadi kesalahan saat mengirim pesan.",
+              style: AppText.regular12Bold,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
