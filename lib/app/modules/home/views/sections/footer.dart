@@ -53,7 +53,8 @@ class Footer extends GetView<HomeController> {
               ),
               UIUtils.horizontalSpace(24),
               InkWell(
-                onTap: () async => controller.openSocialMedia(UrlEnum.instagram),
+                onTap: () async =>
+                    controller.openSocialMedia(UrlEnum.instagram),
                 child: SvgPicture.asset(
                   AppIcons.instagram,
                   width: 24,
@@ -62,10 +63,18 @@ class Footer extends GetView<HomeController> {
             ],
           ),
           UIUtils.verticalSpace(40),
-          const Text("Copyright © 2025 Rifan Setiadi. All rights reserved."),
-          const Text("Made with Flutter."),
+          const Text(
+            "Copyright © 2025 Rifan Setiadi. All rights reserved.",
+            textAlign: TextAlign.center,
+          ),
+          const Text(
+            "Made with Flutter.",
+            textAlign: TextAlign.center,
+          ),
           //
-          ScreenUtils.isSmallScreen(context) ? UIUtils.verticalSpace(80) : const SizedBox.shrink(),
+          ScreenUtils.isSmallScreen(context)
+              ? UIUtils.verticalSpace(80)
+              : const SizedBox.shrink(),
         ],
       ),
     );

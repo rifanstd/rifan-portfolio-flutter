@@ -35,69 +35,71 @@ class ContactMe extends GetView<HomeController> {
   Widget _smallScreenWidgets(BuildContext context) {
     return Form(
       key: controller.sendEmailKey,
-      child: Column(
-        children: [
-          Text(
-            "Talk to me",
-            style: AppText.bold18,
-          ),
-          UIUtils.verticalSpace(24),
-          _buildContactOptionCard(
-            boxWidth: double.infinity,
-            imagePath: AppIcons.sendEmail,
-            title: "Email",
-            value: "rfan2442@gmail.com",
-            onClick: () async {
-              await controller.openSocialMedia(UrlEnum.email);
-            },
-          ),
-          UIUtils.verticalSpace(16),
-          _buildContactOptionCard(
-            boxWidth: double.infinity,
-            imagePath: AppIcons.whatsapp,
-            title: "Whatsapp",
-            value: "+62 896-3009-8684",
-            onClick: () async {
-              await controller.openSocialMedia(UrlEnum.whatsapp);
-            },
-          ),
-          UIUtils.verticalSpace(24),
-          Text(
-            "Write me your project",
-            style: AppText.bold18,
-          ),
-          UIUtils.verticalSpace(24),
-          _buildFormField(
-            hint: "Insert your name",
-            label: "Name",
-            textController: controller.nameController,
-            boxWidth: double.infinity,
-          ),
-          UIUtils.verticalSpace(32),
-          _buildFormField(
-            hint: "Insert your email",
-            label: "Email",
-            textController: controller.emailController,
-            boxWidth: double.infinity,
-          ),
-          UIUtils.verticalSpace(32),
-          _buildFormField(
-            hint: "Write your project",
-            label: "Project",
-            textController: controller.messageController,
-            boxWidth: double.infinity,
-            maxLines: 5,
-          ),
-          UIUtils.verticalSpace(16),
-          if (controller.sendEmailState.value != SendEmailState.initial) ...[
-            _buildSendEmailInfoBox(boxWidth: double.infinity),
+      child: Obx(
+        () => Column(
+          children: [
+            Text(
+              "Talk to me",
+              style: AppText.bold18,
+            ),
+            UIUtils.verticalSpace(24),
+            _buildContactOptionCard(
+              boxWidth: double.infinity,
+              imagePath: AppIcons.sendEmail,
+              title: "Email",
+              value: "rfan2442@gmail.com",
+              onClick: () async {
+                await controller.openSocialMedia(UrlEnum.email);
+              },
+            ),
             UIUtils.verticalSpace(16),
+            _buildContactOptionCard(
+              boxWidth: double.infinity,
+              imagePath: AppIcons.whatsapp,
+              title: "Whatsapp",
+              value: "+62 896-3009-8684",
+              onClick: () async {
+                await controller.openSocialMedia(UrlEnum.whatsapp);
+              },
+            ),
+            UIUtils.verticalSpace(24),
+            Text(
+              "Write me your project",
+              style: AppText.bold18,
+            ),
+            UIUtils.verticalSpace(24),
+            _buildFormField(
+              hint: "Insert your name",
+              label: "Name",
+              textController: controller.nameController,
+              boxWidth: double.infinity,
+            ),
+            UIUtils.verticalSpace(32),
+            _buildFormField(
+              hint: "Insert your email",
+              label: "Email",
+              textController: controller.emailController,
+              boxWidth: double.infinity,
+            ),
+            UIUtils.verticalSpace(32),
+            _buildFormField(
+              hint: "Write your project",
+              label: "Project",
+              textController: controller.messageController,
+              boxWidth: double.infinity,
+              maxLines: 5,
+            ),
+            UIUtils.verticalSpace(16),
+            if (controller.sendEmailState.value != SendEmailState.initial) ...[
+              _buildSendEmailInfoBox(boxWidth: double.infinity),
+              UIUtils.verticalSpace(16),
+            ],
+            SizedBox(
+              width: double.infinity,
+              child: _buildSendMsgBtn(context),
+            ),
           ],
-          SizedBox(
-            width: double.infinity,
-            child: _buildSendMsgBtn(context),
-          ),
-        ],
+        ),
       ),
     );
   }
