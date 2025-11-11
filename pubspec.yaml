@@ -78,7 +78,6 @@ flutter:
     - assets/images/
     - assets/json/
     - assets/lottie/
-    - .env
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
