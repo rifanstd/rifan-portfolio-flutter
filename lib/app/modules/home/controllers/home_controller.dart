@@ -52,15 +52,7 @@ class HomeController extends GetxController with StateMixin {
     await initData();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
 
   void scrollListener() {
     if (scrollController.hasClients) {

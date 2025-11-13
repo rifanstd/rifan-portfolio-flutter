@@ -53,12 +53,12 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyC_2dguFTY5qtrmb3ANZ_wS82b-8O5ts6Q',
-    appId: '1:754808943363:web:320d4c498299afc4f46f36',
-    messagingSenderId: '754808943363',
-    projectId: 'rifansetiadi-portfolio',
-    authDomain: 'rifansetiadi-portfolio.firebaseapp.com',
-    storageBucket: 'rifansetiadi-portfolio.firebasestorage.app',
-    measurementId: 'G-NNFS97944W',
+    apiKey: 'AIzaSyA2hQ5BJQpVcrPk2ja49Vguf29eAKgI3Rs',
+    appId: '1:302575164960:web:41e9518682442127b0e645',
+    messagingSenderId: '302575164960',
+    projectId: 'rifan-portfolio',
+    authDomain: 'rifan-portfolio.firebaseapp.com',
+    storageBucket: 'rifan-portfolio.firebasestorage.app',
+    measurementId: 'G-7PBT7CF1ZK',
   );
 }
